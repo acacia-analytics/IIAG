@@ -1,0 +1,115 @@
+/* css styling for tabs */
+ul {
+  display: inline-block;
+  width: 100%;
+  margin: 48px auto;
+  border-bottom: 1px solid #DAE0E7;
+  background: #F9F9F9;
+  list-style-type: none;
+  padding:12px 12px 0;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+.tab {
+  float: left;
+  height: 44px;
+  margin: 0 8px -1px 0;
+  border: 1px solid #DAE0E7;
+ background: #F9F9F9;
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+}
+
+.tab, .tab a {
+  transition: all .25s;
+}
+
+.tab a {
+  display: inline-block;
+}
+
+.tab a:first-child {
+  padding: 12px 2px 12px 16px;
+ white-space: nowrap;
+}
+
+.tab.tabClosed, .tab.tabClosed a:first-child {
+  margin-right: 0;
+  border-width: 0;
+}
+
+.tab.tabClosed {
+  width: 0 !important;/* use important because we need to set the width of tabs in javascript in order to be able to animate them to 0 */
+}
+
+.tab.tabClosed a {
+  opacity: 0;
+}
+
+.tab:hover {
+  background: #fff;
+}
+
+.tabSelected {
+  height: 45px;
+  border-bottom: none;
+  background: #fff;
+}
+
+.closeTab {
+  width: 16px;
+  height: 16px;
+  margin: 0 14px 0 12px;
+  padding: 3px;
+  border-radius: 16px;
+  line-height: 16px;
+  text-align: center;
+}
+
+.closeTab:hover {
+  background: #DAE0E7;
+}
+
+
+
+
+		/* Style the tab 
+		.tab {
+		  overflow: hidden;
+		  border: 1px solid #ccc;
+		  background-color: #f1f1f1;
+		}
+
+		/* Style the buttons that are used to open the tab content 
+		.tab button {
+		  background-color: inherit;
+		  float: left;
+		  border: none;
+		  outline: none;
+		  cursor: pointer;
+		  padding: 14px 16px;
+		  transition: 0.3s;
+		}
+
+		/* Change background color of buttons on hover 
+		.tab button:hover {
+		  background-color: #ddd;
+		}
+
+		/* Create an active/current tablink class
+		.tab button.active {
+		  background-color: #ccc;
+		}
+
+		/* Style the tab content 
+		.tabcontent {
+		  display: none;
+		  padding: 6px 12px;
+		  border: 1px solid #ccc;
+		  border-top: none;
+		}
+*/

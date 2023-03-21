@@ -1,0 +1,254 @@
+/*Font families and their sources*/
+
+@font-face {
+	font-family: Mark-Pro;
+	src: url(../fonts/Mark-Pro.ttf);
+}
+
+@font-face {
+    font-family: Mark-Pro-Bold;
+    src: url(../fonts/Mark-Pro-Bold.ttf);
+}
+
+@font-face {
+    font-family: Mark-Pro-Medium;
+    src: url(../fonts/Mark-Pro-Medium.ttf);
+}
+
+@font-face {
+    font-family: Mark-Pro-Regular;
+    src: url(../fonts/Mark-Pro-Regular.ttf);
+}
+
+/*General styling used for all pages*/
+body {
+	margin: 0;
+}
+
+.w3-button:hover{
+	color:#000!important;
+	background-color:#fff!important
+}
+
+.cdo-outer-container {
+	width: 100vw;
+}
+
+.cdo-inner-container {
+	width: 100%;
+	padding-top: 3%;
+	padding-bottom: 3%;
+	padding-left: 10%;
+	padding-right: 10%;
+}
+
+hr.cdo-mc-red {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(166, 25,46, 0), rgba(166, 25,46, 0.75), rgba(166, 25,46, 0));
+}
+
+/*Home page specific styling*/
+.home-page-td {
+	font-size: 50px;
+	text-align: center;
+}
+
+.home-page-td-color {
+	color: darkgrey;
+}
+
+.home-page-cdo-color {
+	color: darkgrey;
+}
+
+.home-page-table {
+	height: 50vh;
+	width: 100vw;
+	font-family: Mark-Pro;
+}
+
+/*Main menu overlay*/
+.overlay {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 9999;
+	top: 0;
+	left: 0;
+	/*background-color: #ECE0CE;*/
+	/*background-color: #F6F8ED;*/
+	background-color: #e9e7da;
+	overflow-x: hidden;
+	transition: 0.5s;
+}
+
+.overlay-content {
+	position: relative;
+	top: 25%;
+	margin-top: 30px;
+}
+
+.overlay-content-cells {
+	width: 50%;
+	padding-left: 3%;
+}
+
+.overlay a {
+	padding: 8px;
+	text-decoration: none;
+	font-size: 30px;
+	/*color: #03363D;*/
+	/*color: #4B5320;*/
+	color: #003348;
+	/*color: #373f27;*/
+	display: block;
+	transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+	color: #a6192e;
+}
+
+.overlay .closebtn {
+	position: absolute;
+	top: 20px;
+	right: 45px;
+	font-size: 45px;
+}
+
+@media screen and (max-height: 450px) {
+	.overlay a {
+		font-size: 20px
+	}
+
+	.overlay .closebtn {
+		font-size: 40px;
+		top: 15px;
+		right: 35px;
+	}
+}
+
+
+/*Navigation bar styling*/
+.navbar {
+	border-bottom: .5px solid #474747;
+	/*color: #03363D;*/
+	/*color: #006994;*/
+	/*color: #003348;*/
+	/*color: #4575b4;*/
+	color: #29466c;
+}
+
+.navbar a {
+	font-family: Mark-Pro-Bold;
+}
+
+.navbar a:hover {
+	color: #cc2233;
+}
+
+/*Footer styling*/
+.cdo-footer-background {
+	/*background-color: #03363D;*/
+	/*background-color: #003348;*/
+	/*background-color: #006994;*/
+	background-color: #4575b4;
+}
+
+
+/*Color for backgrounds*/
+.cdo-bg-white {
+	background-color: #FFF;
+}
+
+.cdo-bg-white h1, h2, h3, h4 {
+    font-weight: 700;
+    color:#111
+}
+
+.cdo-bg-white p, li, a {
+    font-weight: 600;
+    color:#888
+}
+
+.cdo-bg-one {
+	background-color: #F8F9F9;
+}
+
+.cdo-bg-one h1, .cdo-bg-one h2, .cdo-bg-one h3, .cdo-bg-one h4 {
+    font-weight: 700;
+    color:#111
+}
+
+.cdo-bg-one p, .cdo-bg-one li, .cdo-bg-one a {
+    font-weight: 600;
+    color:#888
+}
+
+.cdo-bg-two {
+	background-color: #F3F0EE;
+}
+
+.cdo-bg-two h1, .cdo-bg-two h2, .cdo-bg-two h3, .cdo-bg-two h4 {
+    font-weight: 700;
+    color:#111
+}
+
+.cdo-bg-two p, .cdo-bg-two li, .cdo-bg-two a {
+    font-weight: 600;
+    color:#888
+}
+
+.cdo-bg-three {
+	background-color: #ECE0CE;
+}
+
+.cdo-bg-three h1, .cdo-bg-three h2, .cdo-bg-three h3, .cdo-bg-three h4 {
+    font-weight: 700;
+    color:#03363D;
+}
+
+.cdo-bg-three p, .cdo-bg-three li, .cdo-bg-three a {
+    font-weight: 600;
+    color:#17494D;
+}
+
+.cdo-bg-four {
+	/*background-color: #BDD9D7;*/
+	/*background-color: #87CEEB;*/
+	background-color: #91bfdb;
+}
+
+.cdo-bg-four h1, .cdo-bg-four h2, .cdo-bg-four h3, .cdo-bg-four h4  {
+    font-weight: 700;
+    /*color:#03363D;*/
+    /*color: #003348;*/
+    color: #000;
+}
+
+.cdo-bg-four p, .cdo-bg-four li, .cdo-bg-four a {
+    font-weight: 600;
+    /*color:#17494D;*/
+    /*color: #003348;*/
+    color: #3d3d3d;
+}
+
+.cdo-bg-five {
+	background-color: #17494D;
+}
+
+.cdo-bg-five h1, .cdo-bg-five h2, .cdo-bg-five h3, .cdo-bg-five h4 {
+    font-weight: 700;
+    color:#FFF;
+}
+
+.cdo-bg-five p, .cdo-bg-five li, .cdo-bg-five a {
+    font-weight: 600;
+    color:#FFF;
+}
+
+
+
+
+

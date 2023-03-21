@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/alasql@1.7"></script>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/maps/modules/map.js"></script>
+<script src="https://code.highcharts.com/mapdata/custom/africa.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+
+<script src="https://blacklabel.github.io/custom_events/js/customEvents.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/alasql@1.7"></script>
+
+<!--Read in data -->
+
+<script src="../../index_scores/iiag/iiag.js"></script>
+
+<script src="../../index_scores/iiag/category_to_sub_category.js"></script>
+<script src="../../index_scores/iiag/sub_category_to_indicator.js"></script>
+<script src="../../index_scores/iiag/indicator_to_sub_indicator.js"></script>
+<script src="../../index_scores/iiag/sub_indicator_to_sub_sub_indicator.js"></script>
+
+<script src="../../index_scores/iiag/nameData.js"></script>
+<script src="../../index_scores/iiag/data_drilldown.js"></script>
+<script src="../../index_scores/iiag/data_drilldown_hierarchy.js"></script>
+<script src="../../index_scores/iiag/iiag_measures_outline.js"></script>
+
+
+<!-- Initial page setup -->
+<head>
+
+<!-- Stylesheets -->
+	<link rel="stylesheet" href="../../css/w3.css">
+	<link rel="stylesheet" href="../../css/cdo-main.css">
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+		integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">    
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+	integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+	crossorigin=""/>
+	<link rel="stylesheet" href="../../index_scores/iiag/iiag_tab_formatting.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css">
+	<!-- CSS Styling for Hover Boxes -->
+	<link rel="stylesheet" href="../../index_scores/iiag/hover_info_box.css">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title> Ibrahim Index of African Governance</title>
+	<style>
+		html, body {
+			height: 100%;
+			width: 100%;
+		}
+
+        form
+        {
+            text-align: center;
+        }
+        select
+        {
+            display: inline-block;
+        }
+
+		.mapPage {
+			height: 100%;
+		}
+		.countryPage {
+			height: 100%;
+		}
+
+        #main {
+          transition: margin-left .5s;
+        /*  padding: 16px;*/
+        }
+        .w3-container {
+			height: 90%;
+        }
+        #content {
+        	height : 90%;
+        }
+        #index-map { 
+            width: 100%;
+        }
+        /* Card visual styling */ 
+        .grid-container-three {
+          display: grid;
+          grid-template-columns: auto auto auto;
+          gap: 10px;
+          background-color: white;
+          padding: 10px;
+        }
+
+        .grid-container-three div {
+          background-color: #e3e3e3;
+          text-align: center;
+          padding: 20px 0;
+        }
+
+	    .gc-span {
+	        text-align: center;
+	        font-size: 30px;
+	    }
+	    button{
+		  margin: 10px; 
+		}
+		#nav-tabPageContent {
+			margin : 20px;
+		}
+	    .metadata-container {
+	        display: flex;
+	    }
+	    .metadata-column {
+	        flex : 1;
+	        background-color: whitesmoke;
+	        margin : 16px;
+	    }
+	    ul{
+	    	background-color: transparent;
+	    	border-color: transparent;	 
+	    	padding-left:10px;   	
+	    }
+		ul ul{
+		  padding-left:10px;
+		}
+		ul ul ul{
+		  padding-left:10px;
+		}
+		ul ul ul ul{
+		  padding-left:10px;
+		}
+
+	</style>
+</head>
+
+<body>
+<nav class="w3-bar w3-center navbar">
+
+    <a class="w3-bar-item w3-button w3-left w3-hover-white w3-xlarge" onclick="openNav()">&#9776;</a>
+    <!--<a class="w3-bar-item w3-button w3-hover-white w3-xlarge">Africa Command Data and Artificial Intelligence Office</a>-->
+    
+</nav>
+
+<div id="main-nav" class="overlay">
+
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="w3-cell-row overlay-content">
+
+            <div class="w3-cell overlay-content-cells" id="left-nav">
+
+            </div>
+
+            <div class="w3-cell overlay-content-cells" id="right-nav">
+
+            </div>
+
+        </div>
+
+</div>
+
+	<nav>
+	  <div class="nav nav-tabs" id="nav-pages" role="tablist">
+	    <a class="nav-item nav-link active" id="nav-africa-overview-tab" data-toggle="tab" href="#nav-africa-overview" role="tab" aria-controls="nav-africa-overview" aria-selected="false">Africa Overview</a>
+	    <a class="nav-item nav-link" id="nav-country-view-tab" data-toggle="tab" href="#nav-country-view" role="tab" aria-controls="nav-country-view" aria-selected="false">Country View</a>
+	    <a class="nav-item nav-link" id="nav-comparison-tab" data-toggle="tab" href="#nav-comparison" role="tab" aria-controls="nav-comparison" aria-selected="false">Comparison</a>	
+	    <a class="nav-item nav-link" id="nav-table-tab" data-toggle="tab" href="#nav-table" role="tab" aria-controls="nav-table" aria-selected="false">Indicators Table</a>		    
+	    <a class="nav-item nav-link" id="nav-metadata-tab" data-toggle="tab" href="#nav-metadata" role="tab" aria-controls="nav-metadata" aria-selected="true">About</a>	        
+	  </div>
+	</nav>
+
+
+<div class="tab-content" id="nav-tabPageContent" style="height:100%;">
+  <div class="tab-pane fade active show" id="nav-africa-overview" role="tabpanel" aria-labelledby="nav-africa-overview-tab" style="height:100%;">
+	<div class="container" style="height:100%;">
+		<div id = "select-form" class = "form-inline" role = "form">
+			<div class="row">
+			    <div class="col-md">			
+			      	<label for="select_category">Category</label>	    	
+					<div class="form-group select_category_div">
+				      <select id="select_category"  class="form-control">
+						  <option value="OVERALL GOVERNANCE">Overall Governance</option>
+				          <option value="SECURITY & RULE OF LAW">Security & Rule of Law </option>
+				          <option value="PARTICIPATION, RIGHTS & INCLUSION">Participation, Rights, & Inclusion</option>
+				          <option value="HUMAN DEVELOPMENT">Human Development</option>
+				          <option value="FOUNDATIONS FOR ECONOMIC OPPORTUNITY">Foundations for Economic Opportunity</option>
+				      </select>	
+				 	 </div>
+				</div>	
+			    <div class="col-md">			
+				    <label for="select_sub_category">Sub-category</label>	    		    	
+					<div class="form-group select_sub_category_div">
+				      <select id="select_sub_category"  class="form-control">
+				      </select>	
+				    </div>
+				</div>
+			    <div class="col-md">			
+			    	<label for="select_indicator">Indicator</label>	    		    	
+					<div class="form-group select_indicator_div">
+				      <select id="select_indicator"  class="form-control">
+				      </select>	
+				    </div>
+				</div>
+			</div>
+			<br>
+			<div class="row">	
+			    <div class="col-md">			
+			    	<label for="select_sub_indicator">Sub-Indicator</label>	    		    	
+					<div class="form-group select_sub_indicator_div">
+				      <select id="select_sub_indicator"  class="form-control">
+				      </select>	
+				    </div>
+				</div>
+			    <div class="col-md">			
+			    	<label for="select_sub_sub_indicator">Sub-Indicator</label>	    		    	
+					<div class="form-group select_sub_sub_indicator_div">
+				      <select id="select_sub_sub_indicator"  class="form-control">
+				      </select>	
+				    </div>
+				</div>
+		  </div>
+	  </div>
+
+<!--  
+	<form id = "select-form" class = "form-inline" role = "form">
+	  <div class="row">
+	    <div class="col-md text-right" id="select_category_div">
+      	<label class = "text-right form-inline" for="select_category">Category</label>	    	
+	      <select id="select_category"  class="form-control">
+  			  <option value="OVERALL GOVERNANCE">Overall Governance</option>
+              <option value="SECURITY & RULE OF LAW">Security & Rule of Law </option>
+              <option value="PARTICIPATION, RIGHTS & INCLUSION">Participation, Rights, & Inclusion</option>
+              <option value="HUMAN DEVELOPMENT">Human Development</option>
+              <option value="FOUNDATIONS FOR ECONOMIC OPPORTUNITY">Foundations for Economic Opportunity</option>
+	      </select>	
+	    </div>
+	    <div class="col-md" id="select_sub_category_div" style="display:none">
+	      <label for="select_sub_category">Sub-category</label>	    		    	
+	      <select id="select_sub_category"  class="form-control"></select>	
+	    </div>
+	    <div class="col-md" id="select_indicator_div" style="display:none">
+	      <label for="select_indicator">Indicator</label>	    		    		    	
+	      <select id="select_indicator"  class="form-control"></select>	
+	    </div>
+	  </div>
+	  <br>
+	  <div class="row">
+	    <div class="col-md" id="select_sub_indicator_div" style="display:none">
+	      <label for="select_sub_indicator">Sub-indicator</label>	    		    	
+	      <select id="select_sub_indicator"  class="form-control"></select>	
+	    </div>
+	    <div class="col-md" id="select_sub_sub_indicator_div" style="display:none">
+	      <label for="select_sub_sub_indicator">Sub-sub-indicator</label>	    		    		    	
+	      <select id="select_sub_sub_indicator"  class="form-control"></select>	
+	    </div>
+	  </div>
+	</form>
+-->
+<!--
+			<div class="w3-row" id="select-form-row">		
+		        <div class="w3-col w3-third w3-padding" id="category">            
+		     	    <select id="select_category"  class="form-control">Category: 
+		              <option value="OVERALL GOVERNANCE">Overall Governance</option>
+		              <option value="SECURITY & RULE OF LAW">Security & Rule of Law </option>
+		              <option value="PARTICIPATION, RIGHTS & INCLUSION">Participation, Rights, & Inclusion</option>
+		              <option value="HUMAN DEVELOPMENT">Human Development</option>
+		              <option value="FOUNDATIONS FOR ECONOMIC OPPORTUNITY">Foundations for Economic Opportunity</option>
+		     	    </select>		
+		        </div> 
+
+		        <div class="w3-col w3-third w3-padding" style="height:100%; display: none;" id="sub_category">            
+		            <p>Sub Category: <select id="select_sub_category" class="action">
+		            </select></p>       
+		        </div> 
+
+		        <div class="w3-col w3-third w3-padding" style="height:100%; display: none;" id="indicator">            
+		            <p>Indicator: <select id="select_indicator" class="action">
+		            </select></p>       
+		        </div> 
+			</div>
+			<div class="w3-row" id="select-form-row-2">		
+		        <div class="w3-col w3-third w3-padding" style="height:100%; display: none;" id="sub_indicator">            
+		            <p>Sub Indicator: <select id="select_sub_indicator" class="action">
+		            </select></p>       
+		        </div>
+		        <div class="w3-col w3-third w3-padding" style="height:100%; display: none;" id="sub_sub_indicator">            
+		            <p>Sub-Sub Indicator: <select id="select_sub_sub_indicator" class="action">
+		            </select></p>       
+		        </div> 		         				
+			</div>
+	    </form>		
+	-->
+		<hr>
+		<div class="w3-row" id="content" style="height:100%;">		
+		    <div class="w3-col w3-half w3-padding" style="height:90%;">
+				<div id="index-map" class="index-map" style="height:100%;"></div> 
+			</div>
+		    <div class="w3-col w3-half w3-padding" style="height:100%;">
+				<div class="w3-row" id="content" style="height:10%;">		
+					<div class="btn-toolbar pull-right" id="category_button">
+				  		<button class="btn btn-light region-btn active" id = "region-ac-btn">
+				  			AFRICOM Regions
+				  		</button>
+				  		<button class="btn btn-light region-btn" id = "region-ac-regional-btn">
+				  			AFRICOM Division
+				  		</button>
+				  		<button class="btn btn-light region-btn" id = "region-un-regional-btn">
+				  			UN Region
+				  		</button>
+				  		<button class="btn btn-light region-btn" id = "region-au-regional-btn">
+				  			African Union Region
+				  		</button>
+					</div>					
+				</div>		    	
+				<div class="w3-row" id="content" style="height:40%;">		
+				<div id="index-avg-by-year" class="index-avg-by-year" style="height:100%;"></div> 
+				</div>
+				<div class="w3-row" id="content" style="height:40%;">			
+				<h5 style="margin-left:25px">Index Trend by Region: 2012-2021
+					<div class="hover-container" style="display:inline">
+				  		<span class="hover-target" tabindex="0" style="font-size:18px">&#9432;</span>
+				 		 <aside class="hover-popup" id = "region-popup">
+				  		</aside>
+					</div>
+				</h5>
+				<div id="region-trend" class="" style="height:100%;"></div> 				
+				</div>
+			</div>
+		</div>
+  </div>
+
+  </div>
+
+  <div class="tab-pane fade" id="nav-country-view" role="tabpanel" aria-labelledby="nav-country-view-tab">
+	<div class="w3-container w3-padding">
+		<div id = "select-country-form" class = "form-inline" role = "form">		
+		<div class="row">		
+			 <label for="select_country">Country</label>	    				
+			 <select id="select_country" class="action form-control" onchange="CountryChange()"></select>
+		</div>
+		</div>
+		<br>				
+		<div id="countryPageTitle">
+		    <div class="w3-row">
+				<div class="w3-col w3-padding">
+					<h1 class="header-title" id='headerTitle-pg2'></h1>
+				</div>
+			</div>
+		</div>
+		    <form action="" name="select-form-country">
+				<div class="w3-row" id="select-form-row-country">		
+
+			        <div class="w3-col w3-third w3-padding" id="category-country">            
+			     	    <p>Category: <select id="select_category-country" class="action">
+			              <option value="OVERALL GOVERNANCE">Overall Governance</option>
+			              <option value="SECURITY & RULE OF LAW">Security & Rule of Law </option>
+			              <option value="PARTICIPATION, RIGHTS & INCLUSION">Participation, Rights, & Inclusion</option>
+			              <option value="HUMAN DEVELOPMENT">Human Development</option>
+			              <option value="FOUNDATIONS FOR ECONOMIC OPPORTUNITY">Foundations for Economic Opportunity</option>
+			     	    </select></p>		
+			        </div> 
+
+			        <div class="w3-col w3-third w3-padding" style="height:100%; display: none;" id="sub_category-country">            
+			            <p>Sub Category: <select id="select_sub_category-country" class="action">
+			            </select></p>       
+			        </div> 
+
+			        <div class="w3-col w3-third w3-padding" style="height:100%; display: none;" id="indicator-country">            
+			            <p>Indicator: <select id="select_indicator-country" class="action">
+			            </select></p>       
+			        </div> 
+				</div>
+				<div class="w3-row" id="select-form-row-country-2">		
+			        <div class="w3-col w3-third w3-padding" style="height:100%; display: none;" id="sub_indicator-country">            
+			            <p>Sub Indicator: <select id="select_sub_indicator-country" class="action">
+			            </select></p>       
+			        </div>
+			        <div class="w3-col w3-third w3-padding" style="height:100%; display: none;" id="sub_sub_indicator-country">            
+			            <p>Sub-Sub Indicator: <select id="select_sub_sub_indicator-country" class="action">
+			            </select></p>       
+			        </div> 		         				
+				</div>				
+			</form>             
+
+        <div class="grid-container-three">
+            <div>
+                <p>Overall Score</p>
+                <span id="gc1" class="gc-span">1</span>
+                <p>Score out of 120</p>
+            </div>
+            <div>
+                <p>Change from <span id="gc2-1"></span></p>
+                <span id="gc2" class="gc-span">1</span>
+                <p>Index Change </p>
+            </div>
+            <div>
+                <p>African Rank</p>
+                <span id="gc3" class="gc-span">1</span>
+                <p>Out of <span id="gc3-1"></span> Countries</p>
+            </div>
+        </div>
+
+
+		<div class="row" style="height:50%;width:100%;">
+	    	<div id="index-country-by-year" class="index-country-by-year" style="height:100%;width:100%;"></div> 
+		</div>
+		<div class="row" style="height:50%;width:100%;">
+	    	<div id="index-bar-country-compare" class="index-bar-country-compare" style="height:100%;width:100%;"></div> 
+		</div>
+		<hr>
+	</div>	
+		</div>
+
+  <div class="tab-pane fade" id="nav-comparison" role="tabpanel" aria-labelledby="nav-comparison-tab">
+	<div class="w3-container w3-padding">
+		<h1>Index Comparison within Countries</h1>
+		<br>
+		<div class="w3-row" id="select-country-row">		
+		    <p>Country: <select id="select_country_comparison" class="action" onchange="selectCountryResponse()"></select></p>
+		</div>
+		<div class="w3-row" style="height:50%;">
+	    	<div id="indicators-compare" class="indicators-compare" style="height:100%;"></div> 
+		</div>
+	</div>	  
+</div>
+
+ <div class="tab-pane fade" id="nav-table" role="tabpanel" aria-labelledby="nav-table-tab">
+	<div class="w3-container w3-padding">
+		<h1>Indicator Values Table</h1>
+		<br>
+		<div class="w3-row" id="select-country-table-row">		
+		    <p>Country: <select id="select_country_table" class="action" onchange="selectCountryTableResponse();"></select></p>
+		</div>		
+		<div class="btn-toolbar pull-right" id="category_button">
+	  		<button class="btn btn-light active" id = "pri-btn" onclick="makeTable('PARTICIPATION, RIGHTS & INCLUSION');">
+	  			Participation, Rights, and Inclusion
+	  		</button>
+	  		<button class="btn btn-light" id = "srl-btn" onclick="makeTable('SECURITY & RULE OF LAW');">Security and Rule of Law</button>
+	  		<button class="btn btn-light" id = "feo-btn" onclick="makeTable('FOUNDATIONS FOR ECONOMIC OPPORTUNITY');">Foundations for Economic Opportunity</button>
+	  		<button class="btn btn-light" id = "hd-btn" onclick="makeTable('HUMAN DEVELOPMENT');">Human Development</button>
+		</div>
+		<hr>
+		<div class="w3-row">
+			<table id="indicator-table" class="display" style="white-space:nowrap; width:100%; display:block;"></table>
+		</div>
+	</div>
+</div>
+
+  <div class="tab-pane fade" id="nav-metadata" role="tabpanel" aria-labelledby="nav-metadata-tab">
+	<div id="metadata" class="metadata" style="display: block;">
+		<h1 class="header-title" id='headerTitle'> Ibrahim Index of African Governance (IIAG)</h1>
+		<div class="w3-row">
+			<div class="w3-col w3-padding">
+				<p>IIAG is a an index rating the quality of governance throughout Africa that is published annually. IIAG defines governance as "the provision of political, social, economic and environmental goods that a citizen has the right to expect from their state, and that a state has the responsibility to deliver to its citizens." IIAG breaks governance down into four categories</p>
+					<p>- Security and Rule of Law</p>
+					<p>- Participation, Rights, and Inclusion</p>
+					<p>- Foundations for Economic Opportunity</p>
+					<p>- Human Development</p>
+				<p>Each category is further broken down into subcomponents </p>
+				<p>Here is an outline of the structure: </p>
+				<ul style="list-style-type:disc">
+					<li>Category</li>
+					<ul style="list-style-type:square">
+						<li>Sub-category</li>
+						<ul style="list-style-type:circle"> 
+							<li>Indicator</li>
+							<ul style="list-style-type:disc">
+								<li>Sub-indicator</li>
+								<ul style="list-style-type:square">
+									<li>Sub-sub-indicator</li>
+								</ul>								
+							</ul>
+						</ul>
+					</ul>
+				</ul>
+				<p>There may not always be measures at the sub-sub-indicator level. Often they only go down to the sub-indicator level. At the lowest levels, the index rating is typically derived from one specific data source.</p>
+			</div>
+		</div>
+		<div class="w3-container w3-padding">
+			<div class="w3-row" id="select-country-row">		
+			    <p>Last Updated: January 2023</p>
+			    <p>Source page: <a ref='https://iiag.online/'>https://iiag.online/</a></p>		    
+			</div>
+		</div>
+		<h2>List of measures</h2>
+		<br>
+		<div id=measure_block> 
+		</div>
+
+	</div>  
+	<!--
+	Absence of Non-State Conflict (ACLED/UCDP)
+	Absence of Non-State Armed Conflict (UCDP)
+	Absence of Violent Events in Non-State Conflict (ACLED)
+	Absence of Violence against Civilians (ACLED/PTS)
+	Absence of Human Rights Abuses by the Government (ACLED/PTS)
+	Absence of Government Violence against Civilians (ACLED)
+	Absence of Political Violence (PTS)
+	Absence of Non-State Actor Violence against Civilians (ACLED)
+	Absence of Forced Migration (IDMC/UNHCR)-->
+
+</div>
+
+<script>
+	// 
+
+	var html = '';	
+	colors = {
+		'SECURITY & RULE OF LAW' : '#910000', //Red
+		'PARTICIPATION, RIGHTS & INCLUSION' : '#f28f43', //Orange
+		'FOUNDATIONS FOR ECONOMIC OPPORTUNITY' : '#8bbc21', //Green
+		'HUMAN DEVELOPMENT' : '#2f7ed8' //Blue
+	}
+
+	$.each(iiag_measures_outline, function (index_category, category) {
+		var color = colors[index_category]
+		if(color in window){
+			color = 'black'
+		}
+	    html += `<h3 style="color:${color}">${index_category}</h3>`;
+	    html += `<div class="w3-container w3-padding metadata-container">`
+
+
+	    $.each(category, function (index_subcategory, subcategory) {
+	        html += `<div class="w3-col w3-quarter w3-padding metadata-column">`;
+			html += `<ul class='sub_category_meta'>`
+			html += `<li><h4>${index_subcategory}</h4></li>`
+		    $.each(subcategory, function (index_indicator, indicator) {
+		    	html += `<ul class='indicator_meta'>`
+		    	html += `<li><b>${index_indicator}</b></li>`
+		 	   $.each(indicator, function (index_subindicator, subindicator) {
+			        html += `<ul class='sub_indicator_meta'>`
+			        html += `<li>${index_subindicator}</li>`
+			 	   	$.each(subindicator, function (index_subsubindicator, subsubindicator) {
+			 	   		html += `<ul><li><i>${subsubindicator}</i></li></ul>`
+			 	   	});
+			       	html += `</ul>`
+		 	   	});
+		    	html += `</ul>`
+		    });			
+			html += `</ul>`
+	        html += `</div>`
+	    });
+
+	    html+="</div>";
+	});
+	$("#measure_block").append(html);
+
+</script>
+
+<!-- Footer -->
+        <div class="w3-row w3-padding">
+
+<footer class="w3-padding-32 cdo-footer-background w3-text-white">
+    <div class="cdo-inner-container w3-cell-row">
+        <div class="w3-cell">
+            <!--<p>United States Africa Command</p>
+            <p>Command Data and AI Office</p>
+            <p>Kelly Barracks, Stuttgart, DE</p>
+            <p>DSN: 324-591-0032</p>-->
+        </div>
+    </div>
+</footer>
+</div>
+<script src="../../navigation/rightNavMenuData.js"></script>
+<script src="../../navigation/leftNavMenuData.js"></script>
+<script src="../../navigation/main-navigation.js"></script> 
+
+<script src="../../index_scores/iiag/iiag_functions.js"></script>
+<script src="../../index_scores/iiag/iiag_functions.js"></script>
+
+<script>
+//Scripting Section
+
+//Tab navigation
+$('#nav-tab a').on('click', function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+
+$('#nav-pages a').on('click', function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+
+ Highcharts.setOptions({
+lang: {
+	    thousandsSep: ','
+	}
+})
+
+//Get latest year of the data 
+var MAX_YEAR = alasql('SELECT MAX(Year) as MAXYEAR FROM ?',[iiag]);
+var MAX_YEAR = MAX_YEAR[0]['MAXYEAR']
+//Not quite a decade - Maybe will change once data actually stretches back to 2012?
+var MAX_YEAR_MINUS_DECADE = MAX_YEAR - 9 
+
+function update_page1_charts(){
+
+
+    var e_category = document.getElementById("select_category");
+    var e_sub_category = document.getElementById("select_sub_category");
+    var e_indicator = document.getElementById("select_indicator");
+    var e_sub_indicator = document.getElementById("select_sub_indicator");
+    var e_sub_sub_indicator = document.getElementById("select_sub_sub_indicator");
+
+	var category_value;
+	var sub_category_value;
+	var indicator_value;
+	var sub_indicator_value;
+	var sub_sub_indicator_value;
+
+	category_value = e_category.options[e_category.selectedIndex].value;
+
+	if(e_sub_category.options.length == 0){
+		sub_category_value = undefined;
+	} else{
+		sub_category_value = e_sub_category.options[e_sub_category.selectedIndex].value;
+
+	}
+	if(e_indicator.options.length == 0){
+		indicator_value = undefined;
+	} else{
+		indicator_value = e_indicator.options[e_indicator.selectedIndex].value;
+
+	}
+	if(e_sub_indicator.options.length == 0){
+		sub_indicator_value = undefined;
+	} else{
+		sub_indicator_value = e_sub_indicator.options[e_sub_indicator.selectedIndex].value;
+
+	}
+	if(e_sub_sub_indicator.options.length == 0){
+		sub_sub_indicator_value = undefined;
+	} else{
+		sub_sub_indicator_value = e_sub_sub_indicator.options[e_sub_sub_indicator.selectedIndex].value;
+
+	}
+	var index_results;
+	var index_results_map_sql;
+
+
+	//Get active region value 
+	var active_region_type;
+	var buttons = document.getElementsByClassName("region-btn");
+	for (b in buttons) {
+		if(buttons[b].classList != undefined){		
+			if(buttons[b].classList.contains('active')){
+			   	if(buttons[b].id == 'region-ac-btn') active_region_type = 'AC_Region';
+			   	if(buttons[b].id == 'region-ac-regional-btn') active_region_type = 'AC_Regional_Division';
+			   	if(buttons[b].id == 'region-un-regional-btn') active_region_type = 'UN_Region';
+			   	if(buttons[b].id == 'region-au-regional-btn') active_region_type = 'AU_Region';
+	   		}		
+		}
+	}
+
+	//Step through each layer to get the data 
+	//Commented out lines that get Africa regional line charts because it is probably too much to look at
+
+	if(category_value == "OVERALL GOVERNANCE"){
+		index_results_map_sql = alasql('SELECT ISO3, [Value] FROM ? WHERE Year = ? AND Levels = ?',[iiag, MAX_YEAR, 'Overall']);
+		region_data = get_region_data(iiag, 'Level1', active_region_type, category_value, sub_category_value, indicator_value, sub_indicator_value, sub_sub_indicator_value)
+		index_results_line_sql = region_data['line']
+		index_region_trend_sql = region_data['trend']
+	} else if(sub_category_value == "Overall" | sub_category_value == undefined){
+		index_results_map_sql = alasql('SELECT ISO3, [Value] FROM ? WHERE Category = ? AND Year = ? AND Levels = ?',[iiag, category_value, MAX_YEAR, 'Category']);
+		region_data = get_region_data(iiag, 'Level2', active_region_type, category_value, sub_category_value, indicator_value, sub_indicator_value, sub_sub_indicator_value)
+
+	} else if(indicator_value == "Overall" | indicator_value == undefined) {  
+		index_results_map_sql = alasql('SELECT ISO3, [Value] FROM ? WHERE Category = ? AND Sub_Category = ? AND Year = ? AND Levels = ?',[iiag, category_value, sub_category_value, MAX_YEAR, 'Sub-category']);
+		region_data = get_region_data(iiag, 'Level3', active_region_type, category_value, sub_category_value, indicator_value, sub_indicator_value, sub_sub_indicator_value)
+	} else if(sub_indicator_value == "Overall" | sub_indicator_value == undefined){
+		index_results_map_sql = alasql('SELECT ISO3, [Value] FROM ? WHERE Category = ? AND Sub_Category = ? AND Indicator = ? AND Year = ? AND Levels = ?',[iiag, category_value, sub_category_value, indicator_value, MAX_YEAR, 'Indicator']);
+		region_data = get_region_data(iiag, 'Level4', active_region_type, category_value, sub_category_value, indicator_value, sub_indicator_value, sub_sub_indicator_value)
+	} else if(sub_sub_indicator_value == "Overall" | sub_sub_indicator_value == undefined){
+		index_results_map_sql = alasql('SELECT ISO3, [Value] FROM ? WHERE Category = ? AND Sub_Category = ? AND Indicator = ? AND Sub_Indicator = ? AND Year = ? AND Levels = ?',[iiag, category_value, sub_category_value, indicator_value, sub_indicator_value, MAX_YEAR, 'Sub-indicator']);
+		region_data = get_region_data(iiag, 'Level5', active_region_type, category_value, sub_category_value, indicator_value, sub_indicator_value, sub_sub_indicator_value)
+
+	} else{
+		index_results_map_sql = alasql('SELECT ISO3, [Value] FROM ? WHERE Category = ? AND Sub_Category = ? AND Indicator = ? AND Sub_Indicator = ? AND Sub_Sub_Indicator = ? AND Year = ? AND Levels = ?',[iiag, category_value, sub_category_value, indicator_value, sub_indicator_value, sub_sub_indicator_value, MAX_YEAR, 'Sub-sub-indicator']);
+
+		region_data = get_region_data(iiag, 'Level6', active_region_type, category_value, sub_category_value, indicator_value, sub_indicator_value, sub_sub_indicator_value)		
+	}
+	var dict_vals;  
+
+	if(active_region_type == "AC_Region"){
+		//dict_vals = ['', 'Gulf of Guinea', 'East Africa', 'North Africa', 'South Africa']
+		dict_vals = {'EA_Value' : 'East Africa', 
+		'GG_Value' : 'Gulf of Guinea',
+		'NA_Value' : 'North Africa', 
+		'SA_Value' : 'South Africa', 
+		'Sahel_Value' : 'Sahel & Lake Chad Basin', 
+		'Value' : "All Africa"}
+	} else if(active_region_type == "AC_Regional_Division"){
+		dict_vals = {"J53_Value" : 'J53', 
+		"J52_Value" : 'J52', 
+		"J51_Value" : 'J51'};
+	} else if(active_region_type == "UN_Region" | active_region_type == "AU_Region"){
+		//dict_vals = ["", "", "", "", ""]
+		dict_vals = {"EA_Value" : 'Eastern Africa', 
+		'WA_Value' : 'Western Africa',
+		"NA_Value" : 'Northern Africa', 
+		"SA_Value" : 'Southern Africa', 
+		"CA_Value" : 'Central Africa'};		
+	} 	
+
+	index_results_line_sql = region_data['line']
+	index_region_trend_sql = region_data['trend']
+
+	var index_results_map = make_map_dict(index_results_map_sql, 'ISO3', 'Value');
+	//var index_results_line = make_multi_dict(index_results_line_sql, 'Year', ['Value', 'NA_Value', 'SA_Value', 'EA_Value', 'CA_Value', 'WA_Value']);
+	var index_results_line = make_multi_dict(index_results_line_sql, 'Year', Object.keys(dict_vals));	
+	var index_region_trend = make_multi_dict(index_region_trend_sql, 'Change', ['Region']);
+
+
+	// This is the map on the first page with the slider
+	Highcharts.mapChart('index-map', {
+	chart: {
+	    map: 'custom/africa'
+	},
+
+	title: {
+	    text: 'Index by Country',
+	    align : 'left',
+	    margin : 50    
+
+	},
+
+	credits: {
+		enabled: false
+	},
+
+	legend: {
+		title: {
+	        text: 'Score',
+	        style: {
+	            color: ( // theme
+	                Highcharts.defaultOptions &&
+	                Highcharts.defaultOptions.legend &&
+	                Highcharts.defaultOptions.legend.title &&
+	                Highcharts.defaultOptions.legend.title.style &&
+	                Highcharts.defaultOptions.legend.title.style.color
+	            ) || 'black'
+	        }
+	    },
+		layout: 'vertical',
+		align: 'left',
+		floating: true
+	},
+	colorAxis: {
+	    dataClasses: [{
+	        to: 20,
+		    color: '#7A0000',
+		    name: '0 - 20'
+	    }, {
+	        from: 20,
+	        to: 40,
+		    color: '#F67F15',
+		    name: '20 - 40'
+	    }, {
+	        from: 40,
+	        to: 60,
+		    color: '#FEFE00',
+		    name: '40 - 60'
+	    }, {
+	        from: 60,
+	        to: 80,
+		    color: '#3E67CF',
+		    name: '60 - 80'
+	    }, {
+	        from: 80,
+	        to: 100,
+		    color: '#050268',
+		    name: '80 - 100'
+	    }]
+		},
+		series: [{
+			name: category_value,
+			data: index_results_map,
+			joinBy: ['iso-a3', 'ISO3'],
+		    keys: ['ISO3', 'value'],			
+		}]//,
+	    //plotOptions: {
+		//   series: {
+		//	point: {
+		//	    events: {
+		//		click: function() {
+		//			document.getElementById("mapPage").style.display = "none";
+		//			document.getElementById("introBlurb").style.display = "none";
+		//			document.getElementById("countryPageTitle").style.display = "block";					
+		//			document.getElementById("countryPage").style.display = "block";
+
+		//			//keep the same tabs as before?
+		//			var Country = nameData[this.ISO3]
+
+		//			update_page2_charts(Country, category_value, sub_category_value, indicator_value);
+		//		}
+		//	    }
+		//	}
+		//    }
+		//} 
+	});
+
+	//Average by Year
+
+	var region_avg_chart = Highcharts.chart('index-avg-by-year', {
+	    chart: {
+	        type: 'line'
+	    },
+	    title: {
+	        text: 'Average Index by Year and Region',
+	        align : 'left',
+	        margin : 50    
+		},
+		credits : {enabled : false},	
+		xAxis : {
+			categories: index_results_line['Year']
+		},
+	    yAxis: {
+	        title: {
+	            text: 'Average Score'
+	        }
+	    },
+	    series: [{
+	        name: 'All Africa',
+	        data: index_results_line['Value'],
+        	dashStyle: 'dash'
+	    }
+	    ]
+	})
+	//Add each series to line chart? 
+	for(d in dict_vals){
+		if(d != 'Value'){
+			region_avg_chart.addSeries({    
+			   	name: dict_vals[d],
+			    data: index_results_line[d]
+			});			
+		}
+	}
+
+
+
+	//Regional trends 
+	Highcharts.chart('region-trend', {
+	    chart: {
+	        type: 'column'
+	    },
+	    title: '',
+		credits : {enabled : false},	
+		xAxis : {
+			categories: index_region_trend['Region']
+			},
+		legend : {enabled : false},
+	    yAxis: {
+	        title: {
+	            text: 'Change in Index Value'
+	        }
+	    },
+	    series: [{
+	        name: 'Change in Index Value',
+	        data: index_region_trend['Change'],
+			zones: [
+              {
+                value: 0,
+                color: '#AA4643'
+              }, 
+              {
+                color: '#64E572'
+              }
+	    	]	        
+	    }]
+})
+}
+
+function detectFormChange(evt){
+    //if (!evt.target.matches('select.action')) return
+
+
+    change_loc = evt.composedPath()[0].id;
+    var e_category = document.getElementById("select_category");
+    var category = e_category.options[e_category.selectedIndex].value;
+    var e_sub_category = document.getElementById("select_sub_category");
+    var e_indicator = document.getElementById("select_indicator");
+    var e_sub_indicator = document.getElementById("select_sub_indicator");
+    var e_sub_sub_indicator = document.getElementById("select_sub_sub_indicator");
+
+    //depending if a category is selected, give them the option of selecting from a subcategory
+    //Similarly for selecting from an indicator  
+    if(change_loc == 'select_category'){
+        document.getElementById("select_sub_category_div").style.display = "none";
+        document.getElementById("select_indicator_div").style.display = "none";
+        document.getElementById("select_sub_indicator_div").style.display = "none";
+        document.getElementById("select_sub_sub_indicator_div").style.display = "none";
+
+        if(category != 'OVERALL GOVERNANCE'){
+            document.getElementById("select_sub_category_div").style.display = "block";
+
+            e_sub_category.options.length = 0; 
+
+        	e_sub_category.options.add(new Option('Overall', value='Overall')); 
+
+        	sub_category_options = category_to_sub_category[category];
+   
+        	for(s_opts in sub_category_options){
+                e_sub_category.options.add(new Option(sub_category_options[s_opts], value = sub_category_options[s_opts]));             
+        	}
+
+        } else {
+            document.getElementById("select_sub_category_div").style.display = "none";
+
+        }
+    	e_sub_category = undefined;        
+    } else if(change_loc == 'select_sub_category'){
+    	document.getElementById("select_indicator_div").style.display = "none";
+        document.getElementById("select_sub_indicator_div").style.display = "none";
+        document.getElementById("select_sub_sub_indicator_div").style.display = "none";
+
+    	sub_category = e_sub_category.options[e_sub_category.selectedIndex].value;
+    	if(sub_category != "Overall"){
+    		document.getElementById("select_indicator_div").style.display = "block";
+
+			// Fill in indicator selector 
+        	e_indicator.options.length = 0; 
+        	indicator_options = sub_category_to_indicator[sub_category];
+
+        	e_indicator.options.add(new Option('Overall', value='Overall'));    
+        	for(i_opts in indicator_options){
+                e_indicator.options.add(new Option(indicator_options[i_opts], value = indicator_options[i_opts]));             
+        	}
+
+    	} else{
+    		document.getElementById("select_indicator_div").style.display = "none";
+        	e_indicator.options.length = 0; 
+    	}
+
+    } else if(change_loc == 'select_indicator'){
+        document.getElementById("select_sub_indicator_div").style.display = "none";
+        document.getElementById("select_sub_sub_indicator_div").style.display = "none";
+
+    	indicator = e_indicator.options[e_indicator.selectedIndex].value;
+    	if(indicator != "Overall"){
+    		document.getElementById("select_sub_indicator_div").style.display = "block";
+        	e_sub_indicator.options.length = 0; 
+
+        	e_sub_indicator.options.add(new Option('Overall', value='Overall'));    
+
+        	sub_indicator_options = indicator_to_sub_indicator[indicator];
+
+        	for(si_opts in sub_indicator_options){
+                e_sub_indicator.options.add(new Option(sub_indicator_options[si_opts], value = sub_indicator_options[si_opts]));
+        	}
+
+    	} else{
+    		e_sub_indicator.style.display = "none";
+        	e_sub_indicator.options.length = 0; 
+    	}
+
+    } else if(change_loc == 'select_sub_indicator'){
+    	//Hold off on going a level lower - so most of this stuff is commented out 
+        document.getElementById("select_sub_sub_indicator_div").style.display = "none";
+    	sub_indicator = e_sub_indicator.options[e_sub_indicator.selectedIndex].value;
+
+    	if(sub_indicator != "Overall"){
+        	
+        	//Need to add check to make sure that the sub indicator has a sub sub indicator
+        	sub_sub_indicator_options = sub_indicator_to_sub_sub_indicator[sub_indicator];
+
+        	if(!(sub_sub_indicator_options in window)){
+	    		document.getElementById("select_sub_sub_indicator_div").style.display = "block";
+	        	e_sub_sub_indicator.options.length = 0; 
+
+	        	e_sub_sub_indicator.options.add(new Option('Overall', value='Overall'));    
+
+	        	for(ssi_opts in sub_sub_indicator_options){
+	                e_sub_sub_indicator.options.add(new Option(sub_sub_indicator_options[ssi_opts], 
+	                	value = sub_sub_indicator_options[ssi_opts]));
+	        	}
+
+        	}
+
+
+    	} else{
+    		document.getElementById("select_sub_sub_indicator_div").style.display = "none";
+        	e_sub_sub_indicator.options.length = 0; 
+    	}
+
+    }
+    update_page1_charts();
+}
+
+// Create initial chart 
+update_page1_charts();
+
+//Add event listener for form 
+document.getElementById('select-form').addEventListener('change', detectFormChange, false);
+
+
+//Add listener for regional button click 
+function update_info_box(selected_button){
+	//Clear pop up 
+	$("#region-popup").empty();
+
+	var popup_header = $("<h5></h5>"); 
+	var region_data = $("<div></div>")
+
+	if(selected_button == "region-ac-btn"){
+		popup_header.append("AFRICOM Regions Definitions");
+		region_data.append(
+			`
+			<p style="margin:3px"><b>East Africa: </b>Burundi, Djibouti, Eritrea, Ethiopia, Kenya, Rwanda, Somalia, South Sudan, Sudan, Tanzania, Uganda</p>
+			<p style="margin:3px"><b>South Africa: </b>Botswana, Comoros, Eswatini, Lesotho, Madagascar, Malawi, Mauritius, Mozambique, Namibia, Seychelles, South Africa, Zambia, Zimbabwe</p>
+			<p style="margin:3px"><b>North Africa: </b>Algeria, Libya, Morocco, Tunisia</p>
+			<p style="margin:3px"><b>Gulf of Guinea: </b>Angola, Benin, Congo Republic, Côte d'Ivoire, DR Congo, Gabon, Ghana, Guinea, Liberia, São Tomé and Príncipe, Sierra Leone, Togo</p>
+			<p style="margin:3px"><b>Sahel & Lake Chad Basin: </b>Burkina Faso, Cabo Verde, Cameroon, Central African Republic, Chad, Equatorial Guinea, Gambia, Guinea-Bissau, Mali, Mauritania, Niger, Nigeria, Senegal</p>
+			`
+			);
+	} else if(selected_button == "region-ac-regional-btn"){
+		popup_header.append("AFRICOM Divisions Definitions");
+		region_data.append(
+			`
+			<p style="margin:3px"><b>J51: </b>Botswana, Burundi, Comoros, Djibouti, Eritrea, Eswatini, Ethiopia, Kenya, Lesotho, Madagascar, Malawi, Mauritius, Mozambique, Namibia, Rwanda, Seychelles, Somalia, South Africa, South Sudan, Sudan, Tanzania, Uganda, Zambia, Zimbabwe</p>
+			<p style="margin:3px"><b>J52: </b>Algeria, Angola, Benin, Congo Republic, Côte d'Ivoire, DR Congo, Gabon, Ghana, Guinea, Liberia, Libya, Morocco, São Tomé and Príncipe, Sierra Leone, Togo, Tunisia</p>
+			<p style="margin:3px"><b>J53: </b>Burkina Faso, Cabo Verde, Cameroon, Central African Republic, Chad, Equatorial Guinea, Gambia, Guinea-Bissau, Mali, Mauritania, Niger, Nigeria, Senegal</p>
+			`
+			);		
+	} else if(selected_button == "region-un-regional-btn"){
+		popup_header.append("UN Regions Definitions");
+		region_data.append(
+			`
+			<p style="margin:3px"><b>Northern Africa: </b>Algeria, Libya, Morocco, Sudan, Tunisia</p>
+			<p style="margin:3px"><b>Eastern Africa: </b>Burundi, Comoros, Djibouti, Eritrea, Ethiopia, Kenya, Madagascar, Malawi, Mauritius, Mozambique, Rwanda, Seychelles, Somalia, South Sudan, Tanzania, Uganda, Zambia, Zimbabwe</p>
+			<p style="margin:3px"><b>Central Africa: </b>Angola, Cameroon, Central African Republic, Chad, Congo Republic, DR Congo, Equatorial Guinea, Gabon, São Tomé and Príncipe</p>			
+			<p style="margin:3px"><b>Southern Africa: </b>Botswana, Eswatini, Lesotho, Namibia, South Africa</p>
+			<p style="margin:3px"><b>Western Africa: </b>Benin, Burkina Faso, Cabo Verde, Côte d'Ivoire, Gambia, Ghana, Guinea, Guinea-Bissau, Liberia, Mali, Mauritania, Niger, Nigeria, Senegal, Sierra Leone, Togo</p>
+			`);
+	} else if(selected_button == "region-au-regional-btn"){
+		popup_header.append("AU Regions Definitions");
+		region_data.append(
+			`
+			<p style="margin:3px"><b>Northern Africa: </b>Algeria, Libya, Morocco, Tunisia</p>
+			<p style="margin:3px"><b>Eastern Africa: </b>Comoros, Djibouti, Eritrea, Ethiopia, Kenya, Madagascar, Mauritius, Rwanda, Seychelles, Somalia, South Sudan, Sudan, Tanzania, Uganda</p>
+			<p style="margin:3px"><b>Central Africa: </b>Burundi, Cameroon, Central African Republic, Chad, Congo Republic, DR Congo, Equatorial Guinea, Gabon, São Tomé and Príncipe </p>			
+			<p style="margin:3px"><b>Southern Africa: </b>Angola, Botswana, Eswatini, Lesotho, Malawi, Mozambique, Namibia, South Africa, Zambia, Zimbabwe</p>
+			<p style="margin:3px"><b>Western Africa: </b>Benin, Burkina Faso, Cabo Verde, Côte d'Ivoire, Gambia, Ghana, Guinea, Guinea-Bissau, Liberia, Mali, Mauritania, Niger, Nigeria, Senegal, Sierra Leone, Togo</p>
+			`);		
+	}
+
+	//Add to popup
+	$("#region-popup").append(popup_header);
+	$("#region-popup").append(region_data);
+}
+
+update_info_box('region-ac-btn');
+
+$('#category_button button').click(function() {
+    $(this).addClass('active').siblings().removeClass('active');
+    update_page1_charts();
+    var selected_button = $(this)[0].id;
+    update_info_box(selected_button);
+
+});
+
+
+</script>
+
+<!-- Indicators Comparison page -->
+<script src="../../index_scores/iiag/index_comparison_page.js"></script>
+<script src="../../index_scores/iiag/iiag_country_page.js"></script>
+
+</body>
+
+
+
+
+
+

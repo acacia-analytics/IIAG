@@ -1,0 +1,55 @@
+﻿Country,ISO3,IIAG_Region,Geographical,SubSaharan,AC_Region,AC_Regional_Division,UN_Region,AU_Region
+Angola,AGO,Southern Africa,Coastal,1,Gulf of Guinea,J52,Central Africa,Southern Africa
+Burundi,BDI,Central Africa,Landlocked,1,East Africa,J51,Eastern Africa,Central Africa
+Benin,BEN,Western Africa,Coastal,1,Gulf of Guinea,J52,Western Africa,Western Africa
+Burkina Faso,BFA,Western Africa,Landlocked,1,Sahel & Lake Chad Basin,J53,Western Africa,Western Africa
+Botswana,BWA,Southern Africa,Landlocked,1,South Africa,J51,Southern Africa,Southern Africa
+Central African Republic,CAF,Central Africa,Landlocked,1,Sahel & Lake Chad Basin,J53,Central Africa,Central Africa
+Côte d'Ivoire,CIV,Western Africa,Coastal,1,Gulf of Guinea,J52,Western Africa,Western Africa
+Cameroon,CMR,Central Africa,Coastal,1,Sahel & Lake Chad Basin,J53,Central Africa,Central Africa
+DR Congo,COD,Central Africa,Coastal,1,Gulf of Guinea,J52,Central Africa,Central Africa
+Congo Republic,COG,Central Africa,Coastal,1,Gulf of Guinea,J52,Central Africa,Central Africa
+Comoros,COM,Eastern Africa,Island,1,South Africa,J51,Eastern Africa,Eastern Africa
+Cabo Verde,CPV,Western Africa,Island,1,Sahel & Lake Chad Basin,J53,Western Africa,Western Africa
+Djibouti,DJI,Eastern Africa,Coastal,1,East Africa,J51,Eastern Africa,Eastern Africa
+Algeria,DZA,Northern Africa,Coastal,0,North Africa,J52,Northern Africa,Northern Africa
+Egypt,EGY,Northern Africa,Coastal,0,,,,
+Eritrea,ERI,Eastern Africa,Coastal,1,East Africa,J51,Eastern Africa,Eastern Africa
+Ethiopia,ETH,Eastern Africa,Landlocked,1,East Africa,J51,Eastern Africa,Eastern Africa
+Gabon,GAB,Central Africa,Coastal,1,Gulf of Guinea,J52,Central Africa,Central Africa
+Ghana,GHA,Western Africa,Coastal,1,Gulf of Guinea,J52,Western Africa,Western Africa
+Guinea,GIN,Western Africa,Coastal,1,Gulf of Guinea,J52,Western Africa,Western Africa
+Gambia,GMB,Western Africa,Coastal,1,Sahel & Lake Chad Basin,J53,Western Africa,Western Africa
+Guinea-Bissau,GNB,Western Africa,Coastal,1,Sahel & Lake Chad Basin,J53,Western Africa,Western Africa
+Equatorial Guinea,GNQ,Central Africa,Coastal,1,Sahel & Lake Chad Basin,J53,Central Africa,Central Africa
+Kenya,KEN,Eastern Africa,Coastal,1,East Africa,J51,Eastern Africa,Eastern Africa
+Liberia,LBR,Western Africa,Coastal,1,Gulf of Guinea,J52,Western Africa,Western Africa
+Libya,LBY,Northern Africa,Coastal,0,North Africa,J52,Northern Africa,Northern Africa
+Lesotho,LSO,Southern Africa,Landlocked,1,South Africa,J51,Southern Africa,Southern Africa
+Morocco,MAR,Western Africa,Coastal,0,North Africa,J52,Northern Africa,Northern Africa
+Madagascar,MDG,Eastern Africa,Island,1,South Africa,J51,Eastern Africa,Eastern Africa
+Mali,MLI,Western Africa,Landlocked,1,Sahel & Lake Chad Basin,J53,Western Africa,Western Africa
+Mozambique,MOZ,Southern Africa,Coastal,1,South Africa,J51,Eastern Africa,Southern Africa
+Mauritania,MRT,Northern Africa,Coastal,0,Sahel & Lake Chad Basin,J53,Western Africa,Western Africa
+Mauritius,MUS,Eastern Africa,Island,1,South Africa,J51,Eastern Africa,Eastern Africa
+Malawi,MWI,Southern Africa,Landlocked,1,South Africa,J51,Eastern Africa,Southern Africa
+Namibia,NAM,Southern Africa,Coastal,1,South Africa,J51,Southern Africa,Southern Africa
+Niger,NER,Western Africa,Landlocked,1,Sahel & Lake Chad Basin,J53,Western Africa,Western Africa
+Nigeria,NGA,Western Africa,Coastal,1,Sahel & Lake Chad Basin,J53,Western Africa,Western Africa
+Rwanda,RWA,Eastern Africa,Landlocked,1,East Africa,J51,Eastern Africa,Eastern Africa
+Sudan,SDN,Eastern Africa,Coastal,1,East Africa,J51,Northern Africa,Eastern Africa
+Senegal,SEN,Western Africa,Coastal,1,Sahel & Lake Chad Basin,J53,Western Africa,Western Africa
+Sierra Leone,SLE,Western Africa,Coastal,1,Gulf of Guinea,J52,Western Africa,Western Africa
+Somalia,SOM,Eastern Africa,Coastal,1,East Africa,J51,Eastern Africa,Eastern Africa
+South Sudan,SSD,Eastern Africa,Landlocked,1,East Africa,J51,Eastern Africa,Eastern Africa
+São Tomé and Príncipe,STP,Central Africa,Island,1,Gulf of Guinea,J52,Central Africa,Central Africa
+Eswatini,SWZ,Southern Africa,Landlocked,1,South Africa,J51,Southern Africa,Southern Africa
+Seychelles,SYC,Eastern Africa,Island,1,South Africa,J51,Eastern Africa,Eastern Africa
+Chad,TCD,Central Africa,Landlocked,1,Sahel & Lake Chad Basin,J53,Central Africa,Central Africa
+Togo,TGO,Western Africa,Coastal,1,Gulf of Guinea,J52,Western Africa,Western Africa
+Tunisia,TUN,Northern Africa,Coastal,0,North Africa,J52,Northern Africa,Northern Africa
+Tanzania,TZA,Eastern Africa,Coastal,1,East Africa,J51,Eastern Africa,Eastern Africa
+Uganda,UGA,Eastern Africa,Landlocked,1,East Africa,J51,Eastern Africa,Eastern Africa
+South Africa,ZAF,Southern Africa,Coastal,1,South Africa,J51,Southern Africa,Southern Africa
+Zambia,ZMB,Southern Africa,Landlocked,1,South Africa,J51,Eastern Africa,Southern Africa
+Zimbabwe,ZWE,Southern Africa,Landlocked,1,South Africa,J51,Eastern Africa,Southern Africa
