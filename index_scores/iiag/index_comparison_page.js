@@ -79,7 +79,7 @@ function makeTable(category){
 					{ data: "Indicator", title: "Indicator"},				
 					{ data: "Score", title: "Score"},
 					{ data: "Change", title: "Change"},
-					{ data: "Rank", title: "Rank"}
+					{ data: "Rank", title: "Rank"}				
 	            ],
                 paging: false,
 	            rowCallback : function(row, data, index) {

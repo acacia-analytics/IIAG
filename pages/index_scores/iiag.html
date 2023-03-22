@@ -181,7 +181,7 @@
 			<div class="row">
 			    <div class="col-md">			
 			      	<label for="select_category">Category</label>	    	
-					<div class="form-group select_category_div">
+					<div class="form-group" id="select_category_div">
 				      <select id="select_category"  class="form-control">
 						  <option value="OVERALL GOVERNANCE">Overall Governance</option>
 				          <option value="SECURITY & RULE OF LAW">Security & Rule of Law </option>
@@ -192,15 +192,15 @@
 				 	 </div>
 				</div>	
 			    <div class="col-md">			
-				    <label for="select_sub_category">Sub-category</label>	    		    	
-					<div class="form-group select_sub_category_div">
+				    <label for="select_sub_category" id="select_sub_category_label" style="display:none">Sub-category</label>	    		    	
+					<div class="form-group" id="select_sub_category_div" style="display:none">
 				      <select id="select_sub_category"  class="form-control">
 				      </select>	
 				    </div>
 				</div>
 			    <div class="col-md">			
-			    	<label for="select_indicator">Indicator</label>	    		    	
-					<div class="form-group select_indicator_div">
+			    	<label for="select_indicator" id="select_indicator_label" style="display:none">Indicator</label>	    		    	
+					<div class="form-group" id="select_indicator_div" style="display:none">
 				      <select id="select_indicator"  class="form-control">
 				      </select>	
 				    </div>
@@ -209,98 +209,28 @@
 			<br>
 			<div class="row">	
 			    <div class="col-md">			
-			    	<label for="select_sub_indicator">Sub-Indicator</label>	    		    	
-					<div class="form-group select_sub_indicator_div">
+			    	<label for="select_sub_indicator" id="select_sub_indicator_label" style="display:none">Sub-Indicator</label>	    		    	
+					<div class="form-group" id = 'select_sub_indicator_div' style="display:none">
 				      <select id="select_sub_indicator"  class="form-control">
 				      </select>	
 				    </div>
 				</div>
 			    <div class="col-md">			
-			    	<label for="select_sub_sub_indicator">Sub-Indicator</label>	    		    	
-					<div class="form-group select_sub_sub_indicator_div">
+			    	<label for="select_sub_sub_indicator" id="select_sub_sub_indicator_label" style="display:none">Sub-Indicator</label>	    		    	
+					<div class="form-group" id="select_sub_sub_indicator_div" style="display:none">
 				      <select id="select_sub_sub_indicator"  class="form-control">
 				      </select>	
 				    </div>
 				</div>
 		  </div>
 	  </div>
-
-<!--  
-	<form id = "select-form" class = "form-inline" role = "form">
-	  <div class="row">
-	    <div class="col-md text-right" id="select_category_div">
-      	<label class = "text-right form-inline" for="select_category">Category</label>	    	
-	      <select id="select_category"  class="form-control">
-  			  <option value="OVERALL GOVERNANCE">Overall Governance</option>
-              <option value="SECURITY & RULE OF LAW">Security & Rule of Law </option>
-              <option value="PARTICIPATION, RIGHTS & INCLUSION">Participation, Rights, & Inclusion</option>
-              <option value="HUMAN DEVELOPMENT">Human Development</option>
-              <option value="FOUNDATIONS FOR ECONOMIC OPPORTUNITY">Foundations for Economic Opportunity</option>
-	      </select>	
-	    </div>
-	    <div class="col-md" id="select_sub_category_div" style="display:none">
-	      <label for="select_sub_category">Sub-category</label>	    		    	
-	      <select id="select_sub_category"  class="form-control"></select>	
-	    </div>
-	    <div class="col-md" id="select_indicator_div" style="display:none">
-	      <label for="select_indicator">Indicator</label>	    		    		    	
-	      <select id="select_indicator"  class="form-control"></select>	
-	    </div>
-	  </div>
-	  <br>
-	  <div class="row">
-	    <div class="col-md" id="select_sub_indicator_div" style="display:none">
-	      <label for="select_sub_indicator">Sub-indicator</label>	    		    	
-	      <select id="select_sub_indicator"  class="form-control"></select>	
-	    </div>
-	    <div class="col-md" id="select_sub_sub_indicator_div" style="display:none">
-	      <label for="select_sub_sub_indicator">Sub-sub-indicator</label>	    		    		    	
-	      <select id="select_sub_sub_indicator"  class="form-control"></select>	
-	    </div>
-	  </div>
-	</form>
--->
-<!--
-			<div class="w3-row" id="select-form-row">		
-		        <div class="w3-col w3-third w3-padding" id="category">            
-		     	    <select id="select_category"  class="form-control">Category: 
-		              <option value="OVERALL GOVERNANCE">Overall Governance</option>
-		              <option value="SECURITY & RULE OF LAW">Security & Rule of Law </option>
-		              <option value="PARTICIPATION, RIGHTS & INCLUSION">Participation, Rights, & Inclusion</option>
-		              <option value="HUMAN DEVELOPMENT">Human Development</option>
-		              <option value="FOUNDATIONS FOR ECONOMIC OPPORTUNITY">Foundations for Economic Opportunity</option>
-		     	    </select>		
-		        </div> 
-
-		        <div class="w3-col w3-third w3-padding" style="height:100%; display: none;" id="sub_category">            
-		            <p>Sub Category: <select id="select_sub_category" class="action">
-		            </select></p>       
-		        </div> 
-
-		        <div class="w3-col w3-third w3-padding" style="height:100%; display: none;" id="indicator">            
-		            <p>Indicator: <select id="select_indicator" class="action">
-		            </select></p>       
-		        </div> 
-			</div>
-			<div class="w3-row" id="select-form-row-2">		
-		        <div class="w3-col w3-third w3-padding" style="height:100%; display: none;" id="sub_indicator">            
-		            <p>Sub Indicator: <select id="select_sub_indicator" class="action">
-		            </select></p>       
-		        </div>
-		        <div class="w3-col w3-third w3-padding" style="height:100%; display: none;" id="sub_sub_indicator">            
-		            <p>Sub-Sub Indicator: <select id="select_sub_sub_indicator" class="action">
-		            </select></p>       
-		        </div> 		         				
-			</div>
-	    </form>		
-	-->
 		<hr>
-		<div class="w3-row" id="content" style="height:100%;">		
-		    <div class="w3-col w3-half w3-padding" style="height:90%;">
-				<div id="index-map" class="index-map" style="height:100%;"></div> 
+		<div class="row" id="content" style="height:100%;">		
+		    <div class="col-md w3-half w3-padding" style="height:90%;">
+				<div id="index-map" class="index-map" style="height:95%;"></div> 
 			</div>
-		    <div class="w3-col w3-half w3-padding" style="height:100%;">
-				<div class="w3-row" id="content" style="height:10%;">		
+		    <div class="col-md" style="height:100%;">
+				<div class="row" id="btn-content" style="height:5%;">		
 					<div class="btn-toolbar pull-right" id="category_button">
 				  		<button class="btn btn-light region-btn active" id = "region-ac-btn">
 				  			AFRICOM Regions
@@ -312,14 +242,16 @@
 				  			UN Region
 				  		</button>
 				  		<button class="btn btn-light region-btn" id = "region-au-regional-btn">
-				  			African Union Region
+				  			AU Region
 				  		</button>
 					</div>					
-				</div>		    	
-				<div class="w3-row" id="content" style="height:40%;">		
+				</div>
+				<br>		    	
+				<div class="row" id="content" style="height:40%;">		
 				<div id="index-avg-by-year" class="index-avg-by-year" style="height:100%;"></div> 
 				</div>
-				<div class="w3-row" id="content" style="height:40%;">			
+				<br>
+				<div class="row" id="content" style="height:40%;">			
 				<h5 style="margin-left:25px">Index Trend by Region: 2012-2021
 					<div class="hover-container" style="display:inline">
 				  		<span class="hover-target" tabindex="0" style="font-size:18px">&#9432;</span>
@@ -327,20 +259,21 @@
 				  		</aside>
 					</div>
 				</h5>
-				<div id="region-trend" class="" style="height:100%;"></div> 				
+				<div id="region-trend" class="" style="height:85%;"></div> 				
 				</div>
 			</div>
 		</div>
   </div>
-
   </div>
 
   <div class="tab-pane fade" id="nav-country-view" role="tabpanel" aria-labelledby="nav-country-view-tab">
-	<div class="w3-container w3-padding">
+	<div class="container">
 		<div id = "select-country-form" class = "form-inline" role = "form">		
 		<div class="row">		
+			 <div class="col-md-3">
 			 <label for="select_country">Country</label>	    				
 			 <select id="select_country" class="action form-control" onchange="CountryChange()"></select>
+			</div>
 		</div>
 		</div>
 		<br>				
@@ -351,40 +284,54 @@
 				</div>
 			</div>
 		</div>
-		    <form action="" name="select-form-country">
-				<div class="w3-row" id="select-form-row-country">		
 
-			        <div class="w3-col w3-third w3-padding" id="category-country">            
-			     	    <p>Category: <select id="select_category-country" class="action">
-			              <option value="OVERALL GOVERNANCE">Overall Governance</option>
-			              <option value="SECURITY & RULE OF LAW">Security & Rule of Law </option>
-			              <option value="PARTICIPATION, RIGHTS & INCLUSION">Participation, Rights, & Inclusion</option>
-			              <option value="HUMAN DEVELOPMENT">Human Development</option>
-			              <option value="FOUNDATIONS FOR ECONOMIC OPPORTUNITY">Foundations for Economic Opportunity</option>
-			     	    </select></p>		
-			        </div> 
-
-			        <div class="w3-col w3-third w3-padding" style="height:100%; display: none;" id="sub_category-country">            
-			            <p>Sub Category: <select id="select_sub_category-country" class="action">
-			            </select></p>       
-			        </div> 
-
-			        <div class="w3-col w3-third w3-padding" style="height:100%; display: none;" id="indicator-country">            
-			            <p>Indicator: <select id="select_indicator-country" class="action">
-			            </select></p>       
-			        </div> 
+		<div id = "select-form-country" class = "form-inline" role = "form">
+			<div class="row">
+			    <div class="col-md">			
+			      	<label for="select_category_div-country">Category</label>	    	
+					<div class="form-group" id="select_category_div-country">
+				      <select id="select_category-country"  class="form-control">
+						  <option value="OVERALL GOVERNANCE">Overall Governance</option>
+				          <option value="SECURITY & RULE OF LAW">Security & Rule of Law </option>
+				          <option value="PARTICIPATION, RIGHTS & INCLUSION">Participation, Rights, & Inclusion</option>
+				          <option value="HUMAN DEVELOPMENT">Human Development</option>
+				          <option value="FOUNDATIONS FOR ECONOMIC OPPORTUNITY">Foundations for Economic Opportunity</option>
+				      </select>	
+				 	 </div>
+				</div>	
+			    <div class="col-md">			
+				    <label for="select_sub_category-country" id="select_sub_category_label-country" style="display:none">Sub-category</label>	    		    	
+					<div class="form-group" id="select_sub_category_div-country" style="display:none">
+				      <select id="select_sub_category-country"  class="form-control">
+				      </select>	
+				    </div>
 				</div>
-				<div class="w3-row" id="select-form-row-country-2">		
-			        <div class="w3-col w3-third w3-padding" style="height:100%; display: none;" id="sub_indicator-country">            
-			            <p>Sub Indicator: <select id="select_sub_indicator-country" class="action">
-			            </select></p>       
-			        </div>
-			        <div class="w3-col w3-third w3-padding" style="height:100%; display: none;" id="sub_sub_indicator-country">            
-			            <p>Sub-Sub Indicator: <select id="select_sub_sub_indicator-country" class="action">
-			            </select></p>       
-			        </div> 		         				
-				</div>				
-			</form>             
+			    <div class="col-md">			
+			    	<label for="select_indicator-country" id="select_indicator_label-country" style="display:none">Indicator</label>	    		    	
+					<div class="form-group" id="select_indicator_div-country" style="display:none">
+				      <select id="select_indicator-country"  class="form-control">
+				      </select>	
+				    </div>
+				</div>
+			</div>
+			<br>
+			<div class="row">	
+			    <div class="col-md">			
+			    	<label for="select_sub_indicator-country" id="select_sub_indicator_label-country" style="display:none">Sub-Indicator</label>	    		    	
+					<div class="form-group" id = 'select_sub_indicator_div-country' style="display:none">
+				      <select id="select_sub_indicator-country"  class="form-control">
+				      </select>	
+				    </div>
+				</div>
+			    <div class="col-md">			
+			    	<label for="select_sub_sub_indicator-country" id="select_sub_sub_indicator_label-country" style="display:none">Sub-Indicator</label>	    		    	
+					<div class="form-group" id="select_sub_sub_indicator_div-country" style="display:none">
+				      <select id="select_sub_sub_indicator-country"  class="form-control">
+				      </select>	
+				    </div>
+				</div>
+		  </div>
+	  </div>             
 
         <div class="grid-container-three">
             <div>
@@ -416,25 +363,33 @@
 		</div>
 
   <div class="tab-pane fade" id="nav-comparison" role="tabpanel" aria-labelledby="nav-comparison-tab">
-	<div class="w3-container w3-padding">
+	<div class="container">
 		<h1>Index Comparison within Countries</h1>
 		<br>
-		<div class="w3-row" id="select-country-row">		
-		    <p>Country: <select id="select_country_comparison" class="action" onchange="selectCountryResponse()"></select></p>
+		<div class="row" id="select-country-row">		
+			 <div class="col-md-3">
+				 <label for="select_country">Country</label>	    				
+				 <select id="select_country_comparison" class="action form-control" onchange="selectCountryResponse()"></select>
+			</div>
 		</div>
+		<br>		
 		<div class="w3-row" style="height:50%;">
 	    	<div id="indicators-compare" class="indicators-compare" style="height:100%;"></div> 
 		</div>
 	</div>	  
-</div>
+  </div>
 
  <div class="tab-pane fade" id="nav-table" role="tabpanel" aria-labelledby="nav-table-tab">
-	<div class="w3-container w3-padding">
+	<div class="container">
 		<h1>Indicator Values Table</h1>
 		<br>
-		<div class="w3-row" id="select-country-table-row">		
-		    <p>Country: <select id="select_country_table" class="action" onchange="selectCountryTableResponse();"></select></p>
-		</div>		
+		<div class="row">		
+			 <div class="col-md-3">
+			 <label for="select_country">Country</label>	    				
+			 <select id="select_country_table" class="action form-control" onchange="selectCountryTableResponse()"></select>
+			</div>
+		</div>
+		<br>		
 		<div class="btn-toolbar pull-right" id="category_button">
 	  		<button class="btn btn-light active" id = "pri-btn" onclick="makeTable('PARTICIPATION, RIGHTS & INCLUSION');">
 	  			Participation, Rights, and Inclusion
@@ -451,10 +406,10 @@
 </div>
 
   <div class="tab-pane fade" id="nav-metadata" role="tabpanel" aria-labelledby="nav-metadata-tab">
-	<div id="metadata" class="metadata" style="display: block;">
+	<div class="container">
 		<h1 class="header-title" id='headerTitle'> Ibrahim Index of African Governance (IIAG)</h1>
-		<div class="w3-row">
-			<div class="w3-col w3-padding">
+		<div class="row">
+			<div class="col">
 				<p>IIAG is a an index rating the quality of governance throughout Africa that is published annually. IIAG defines governance as "the provision of political, social, economic and environmental goods that a citizen has the right to expect from their state, and that a state has the responsibility to deliver to its citizens." IIAG breaks governance down into four categories</p>
 					<p>- Security and Rule of Law</p>
 					<p>- Participation, Rights, and Inclusion</p>
@@ -480,11 +435,9 @@
 				<p>There may not always be measures at the sub-sub-indicator level. Often they only go down to the sub-indicator level. At the lowest levels, the index rating is typically derived from one specific data source.</p>
 			</div>
 		</div>
-		<div class="w3-container w3-padding">
-			<div class="w3-row" id="select-country-row">		
-			    <p>Last Updated: January 2023</p>
-			    <p>Source page: <a ref='https://iiag.online/'>https://iiag.online/</a></p>		    
-			</div>
+		<div class="row" id="select-country-row">		
+		    <p>Last Updated: January 2023</p>
+		    <p>Source page: <a ref='https://iiag.online/'>https://iiag.online/</a></p>		    
 		</div>
 		<h2>List of measures</h2>
 		<br>
@@ -896,8 +849,16 @@ function detectFormChange(evt){
         document.getElementById("select_sub_indicator_div").style.display = "none";
         document.getElementById("select_sub_sub_indicator_div").style.display = "none";
 
+        document.getElementById("select_sub_category_label").style.display = "none";
+        document.getElementById("select_indicator_label").style.display = "none";
+        document.getElementById("select_sub_indicator_label").style.display = "none";
+        document.getElementById("select_sub_sub_indicator_label").style.display = "none";
+
+
+
         if(category != 'OVERALL GOVERNANCE'){
             document.getElementById("select_sub_category_div").style.display = "block";
+	        document.getElementById("select_sub_category_label").style.display = "block";
 
             e_sub_category.options.length = 0; 
 
@@ -911,7 +872,7 @@ function detectFormChange(evt){
 
         } else {
             document.getElementById("select_sub_category_div").style.display = "none";
-
+	        document.getElementById("select_sub_category_label").style.display = "none";
         }
     	e_sub_category = undefined;        
     } else if(change_loc == 'select_sub_category'){
@@ -919,9 +880,14 @@ function detectFormChange(evt){
         document.getElementById("select_sub_indicator_div").style.display = "none";
         document.getElementById("select_sub_sub_indicator_div").style.display = "none";
 
+        document.getElementById("select_indicator_label").style.display = "none";
+        document.getElementById("select_sub_indicator_label").style.display = "none";
+        document.getElementById("select_sub_sub_indicator_label").style.display = "none";
+
     	sub_category = e_sub_category.options[e_sub_category.selectedIndex].value;
     	if(sub_category != "Overall"){
     		document.getElementById("select_indicator_div").style.display = "block";
+	        document.getElementById("select_indicator_label").style.display = "block";
 
 			// Fill in indicator selector 
         	e_indicator.options.length = 0; 
@@ -934,6 +900,7 @@ function detectFormChange(evt){
 
     	} else{
     		document.getElementById("select_indicator_div").style.display = "none";
+	        document.getElementById("select_indicator_label").style.display = "none";    		
         	e_indicator.options.length = 0; 
     	}
 
@@ -941,9 +908,14 @@ function detectFormChange(evt){
         document.getElementById("select_sub_indicator_div").style.display = "none";
         document.getElementById("select_sub_sub_indicator_div").style.display = "none";
 
+        document.getElementById("select_sub_indicator_label").style.display = "none";
+        document.getElementById("select_sub_sub_indicator_label").style.display = "none";
+
     	indicator = e_indicator.options[e_indicator.selectedIndex].value;
     	if(indicator != "Overall"){
     		document.getElementById("select_sub_indicator_div").style.display = "block";
+	        document.getElementById("select_sub_indicator_label").style.display = "block";
+
         	e_sub_indicator.options.length = 0; 
 
         	e_sub_indicator.options.add(new Option('Overall', value='Overall'));    
@@ -956,12 +928,15 @@ function detectFormChange(evt){
 
     	} else{
     		e_sub_indicator.style.display = "none";
+	        document.getElementById("select_sub_indicator_label").style.display = "none";    		
         	e_sub_indicator.options.length = 0; 
     	}
 
     } else if(change_loc == 'select_sub_indicator'){
     	//Hold off on going a level lower - so most of this stuff is commented out 
         document.getElementById("select_sub_sub_indicator_div").style.display = "none";
+        document.getElementById("select_sub_sub_indicator_label").style.display = "none";
+
     	sub_indicator = e_sub_indicator.options[e_sub_indicator.selectedIndex].value;
 
     	if(sub_indicator != "Overall"){
@@ -971,6 +946,7 @@ function detectFormChange(evt){
 
         	if(!(sub_sub_indicator_options in window)){
 	    		document.getElementById("select_sub_sub_indicator_div").style.display = "block";
+		        document.getElementById("select_sub_sub_indicator_label").style.display = "block";	    		
 	        	e_sub_sub_indicator.options.length = 0; 
 
 	        	e_sub_sub_indicator.options.add(new Option('Overall', value='Overall'));    
@@ -985,6 +961,7 @@ function detectFormChange(evt){
 
     	} else{
     		document.getElementById("select_sub_sub_indicator_div").style.display = "none";
+        	document.getElementById("select_sub_sub_indicator_label").style.display = "none";    		
         	e_sub_sub_indicator.options.length = 0; 
     	}
 

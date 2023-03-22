@@ -5,6 +5,7 @@ library(tidyverse)
 library(readxl)
 library(jsonlite)
 library(glue)
+setwd("~/Documents/GitHub/IIAG/data_processing/")
 data <- read_excel("2022-IIAG-scores.xlsx",
                    skip = 7,
                    col_names = FALSE
@@ -118,6 +119,16 @@ levels_mapping_cleaned <- levels_mapping %>%
     TRUE ~ NA_character_    
   )
   )
+levels_mapping_cleaned <- levels_mapping_cleaned %>% mutate(
+  Indicator = ifelse(Levels %in% c("Sub-category"), NA, Indicator),
+  Sub_Indicator = ifelse(Levels %in% c("Indicator", "Sub-category"), NA, Sub_Indicator),
+  Sub_Sub_Indicator = ifelse(Levels %in% c("Sub-indicator", "Indicator", "Sub-category"), NA, Sub_Sub_Indicator),
+  
+  Index_Code_Sub_Category = ifelse(is.na(Sub_Category), NA, Index_Code_Sub_Category), 
+  Index_Code_Indicator = ifelse(is.na(Indicator), NA, Index_Code_Indicator),
+  Index_Code_Sub_Indicator = ifelse(is.na(Sub_Indicator), NA, Index_Code_Sub_Indicator),
+  Index_Code_Sub_Sub_Indicator = ifelse(is.na(Sub_Sub_Indicator), NA, Index_Code_Sub_Sub_Indicator)
+) 
 
 # data 
 iiag_data_long <- data_long %>% left_join(levels_mapping_cleaned)
@@ -180,19 +191,19 @@ iiag_data <- iiag_data %>% group_by(Index_Code_Category, Index_Code_Sub_Category
 
 iiag_data <- iiag_data %>% 
   mutate(index_vals = index * 100 + index2 + index3 / 1000) %>% 
-  select(-index, -index2, -index3)
+  select(-index, -index2, -index3, -index4, -index5)
 
-save(iiag_data, file = "clean_iiag_data.RData")
-write_csv(iiag_data, file = "clean_iiag_data.csv")
-write_csv(levels_mapping_cleaned, file = "iiag_mapping.csv")
+save(iiag_data, file = "./../../../AFRICOM/IIAG/clean_iiag_data.RData")
+write_csv(iiag_data, file = "./../../../AFRICOM/IIAG/clean_iiag_data.csv")
+write_csv(levels_mapping_cleaned, file = "./../../../AFRICOM/IIAG/iiag_mapping.csv")
 
 # Output as JSON file 
 
-load("clean_iiag_data.RData")
+load("./../../../AFRICOM/IIAG/clean_iiag_data.RData")
 
-write_json(iiag_data, path = "/Users/joejohnson/Documents/AFRICOM/webapp/index_scores/iiag/iiag.js")
+write_json(iiag_data, path = "./../index_scores/iiag/iiag.js")
 
-fConn <- file( "/Users/joejohnson/Documents/AFRICOM/webapp/index_scores/iiag/iiag.js", 'r+')
+fConn <- file( "./../index_scores/iiag/iiag.js", 'r+')
 Lines <- readLines(fConn)
 writeLines(c("var iiag = ", Lines), con = fConn)
 close(fConn)
@@ -211,9 +222,9 @@ for(c in categories){
   sub_category_mapping_list[[c]] <- sub_categories$Sub_Category
 }
 
-write_json(sub_category_mapping_list, path = "/Users/joejohnson/Documents/AFRICOM/webapp/index_scores/iiag/category_to_sub_category.js")
+write_json(sub_category_mapping_list, path = "./../index_scores/iiag/category_to_sub_category.js")
 
-fConn <- file( "/Users/joejohnson/Documents/AFRICOM/webapp/index_scores/iiag/category_to_sub_category.js", 'r+')
+fConn <- file( "./../index_scores/iiag/category_to_sub_category.js", 'r+')
 Lines <- readLines(fConn)
 writeLines(c("var category_to_sub_category = ", Lines), con = fConn)
 close(fConn)
@@ -229,9 +240,9 @@ for(sc in sub_categories){
   indicator_mapping_list[[sc]] <- indicators$Indicator
 }
 
-write_json(indicator_mapping_list, path = "/Users/joejohnson/Documents/AFRICOM/webapp/index_scores/iiag/sub_category_to_indicator.js")
+write_json(indicator_mapping_list, path = "./../index_scores/iiag/sub_category_to_indicator.js")
 
-fConn <- file( "/Users/joejohnson/Documents/AFRICOM/webapp/index_scores/iiag/sub_category_to_indicator.js", 'r+')
+fConn <- file( "./../index_scores/iiag/sub_category_to_indicator.js", 'r+')
 Lines <- readLines(fConn)
 writeLines(c("var sub_category_to_indicator = ", Lines), con = fConn)
 close(fConn)
@@ -247,9 +258,9 @@ for(i in indicators){
   sub_indicators <- sub_indicator_mapping %>% filter(Indicator == i)
   sub_indicator_mapping_list[[i]] <- sub_indicators$Sub_Indicator
 }
-write_json(sub_indicator_mapping_list, path = "/Users/joejohnson/Documents/AFRICOM/webapp/index_scores/iiag/indicator_to_sub_indicator.js")
+write_json(sub_indicator_mapping_list, path = "./../index_scores/iiag/indicator_to_sub_indicator.js")
 
-fConn <- file( "/Users/joejohnson/Documents/AFRICOM/webapp/index_scores/iiag/indicator_to_sub_indicator.js", 'r+')
+fConn <- file( "./../index_scores/iiag/indicator_to_sub_indicator.js", 'r+')
 Lines <- readLines(fConn)
 writeLines(c("var indicator_to_sub_indicator = ", Lines), con = fConn)
 close(fConn)
@@ -267,67 +278,18 @@ for(si in sub_indicators){
   sub_sub_indicator_mapping_list[[si]] <- sub_sub_indicators$Sub_Sub_Indicator
 }
 
-write_json(sub_sub_indicator_mapping_list, path = "/Users/joejohnson/Documents/AFRICOM/webapp/index_scores/iiag/sub_indicator_to_sub_sub_indicator.js")
+write_json(sub_sub_indicator_mapping_list, path = "./../index_scores/iiag/sub_indicator_to_sub_sub_indicator.js")
 
-fConn <- file( "/Users/joejohnson/Documents/AFRICOM/webapp/index_scores/iiag/sub_indicator_to_sub_sub_indicator.js", 'r+')
+fConn <- file( "./../index_scores/iiag/sub_indicator_to_sub_sub_indicator.js", 'r+')
 Lines <- readLines(fConn)
 writeLines(c("var sub_indicator_to_sub_sub_indicator = ", Lines), con = fConn)
 close(fConn)
 
 
 # Produce comma separated country names 
-country_groups <- read_csv("country_groupings_iiag.csv")
-country_groups %>% group_by(AC_Region) %>% arrange(AC_Region, Country) %>% summarize(text_output = paste0(Country, collapse = ", "))
-country_groups %>% group_by(AC_Regional_Division) %>% arrange(AC_Regional_Division, Country) %>% summarize(text_output = paste0(Country, collapse = ", "))
-country_groups %>% group_by(UN_Region) %>% arrange(UN_Region, Country) %>% summarize(text_output = paste0(Country, collapse = ", "))
-country_groups %>% group_by(AU_Region) %>% arrange(AU_Region, Country) %>% summarize(text_output = paste0(Country, collapse = ", "))
+# country_groups <- read_csv("country_groupings_iiag.csv")
+# country_groups %>% group_by(AC_Region) %>% arrange(AC_Region, Country) %>% summarize(text_output = paste0(Country, collapse = ", "))
+# country_groups %>% group_by(AC_Regional_Division) %>% arrange(AC_Regional_Division, Country) %>% summarize(text_output = paste0(Country, collapse = ", "))
+# country_groups %>% group_by(UN_Region) %>% arrange(UN_Region, Country) %>% summarize(text_output = paste0(Country, collapse = ", "))
+# country_groups %>% group_by(AU_Region) %>% arrange(AU_Region, Country) %>% summarize(text_output = paste0(Country, collapse = ", "))
 
-# Measures in a readable format
-
-
-
-json_level_outline = list()
-# Skip overall governance score
-for(i in 2:nrow(levels_mapping_cleaned)){
-  row = levels_mapping_cleaned[i, ]
-  if(row$Levels == "Category"){
-    cat_entry = length(json_level_outline) + 1
-    
-    if(length(json_level_outline) == 0){
-      json_level_outline[[cat_entry]] = list()
-    }
-    json_level_outline[[cat_entry]]$sub_categories = list()
-    names(json_level_outline)[cat_entry] <- row$Names
-    
-  } else if(row$Levels == "Sub-category"){
-    sub_cat_entry = length(json_level_outline[[cat_entry]]$sub_categories) + 1
-    json_level_outline[[cat_entry]]$sub_categories[sub_cat_entry] <- row$Names
-  }
-  
-}
-
-
-
-measures <- read_csv("iiag_measures.csv")[, -3]
-measures <- measures %>% filter(!is.na(Level))
-
-measures_List <- list()
-for(i in 1:nrow(measures)){
-  Level = measures$Level[i]
-  Name = measures$Name[i]
-  
-  if(Level == 2){
-    entry = length(measures_List) + 1
-    measures_List[[entry]] <- list()
-    names(measures_List)[entry] <- Name
-  }
-}
-
-
-iiag_data %>% 
-  filter(Country == "Eritrea", Category == "PARTICIPATION, RIGHTS & INCLUSION", Sub_Category == "INCLUSION & EQUALITY", 
-         Indicator == "Equal Access to Public Services", 
-         Sub_Indicator == "Access to Public Services by Income Level",
-         Year == 2021, Levels == "Sub-indicator") %>% View()
-
-iiag.html:597 

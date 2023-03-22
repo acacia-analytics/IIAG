@@ -73,12 +73,32 @@ function update_page2_charts(country){
 	var country_results_hc = make_multi_dict(country_results, 'Country', ['Value', 'Color'])
 
 	//Country Card visuals 
-	document.getElementById("gc1").innerHTML = card_results[0]['Value']
-	document.getElementById("gc2").innerHTML = card_results[0]['Value_Change']
-	document.getElementById("gc3").innerHTML = card_results[0]['Rank']
-	document.getElementById("gc2-1").innerHTML = MAX_YEAR - 1 //Previous Year 
+	var card_value;
+	var card_value_change;
+	var card_value_rank;
+	
+	if(card_results[0]['Rank'] in window){
+		card_value = 'Not Scored';
+	} else{
+		card_value = card_results[0]['Rank'];
+	}
+	if(card_results[0]['Value_Change'] in window){
+		card_value_change = 'Not Scored';
+	} else{
+		card_value_change = card_results[0]['Value_Change']; 
+	}		
+	if(card_results[0]['Value'] in window){
+		card_value_rank = 'Not Scored';
+	} else{
+		card_value_rank = card_results[0]['Value'];
+	}
 
-	document.getElementById("gc3-1").innerHTML = 54
+	document.getElementById("gc1").innerHTML = card_value;
+	document.getElementById("gc2").innerHTML = card_value_change;
+	document.getElementById("gc3").innerHTML = card_value_rank;
+	document.getElementById("gc2-1").innerHTML = MAX_YEAR - 1; //Previous Year 
+
+	document.getElementById("gc3-1").innerHTML = 54;
 
 	//console.log(country_index_by_category_hc);
 
@@ -181,13 +201,11 @@ function CountryChange(){
 //Category, subcategory, indicator select box functionality 
 
 function detectFormChangeCountry(evt){
-    if (!evt.target.matches('select.action')) return
 
 	const e_select_country = document.getElementById('select_country');
 	var country = e_select_country.options[e_select_country.selectedIndex].value;
 
     change_loc = evt.composedPath()[0].id;
-
     var e_category_country = document.getElementById("select_category-country");
     var category_country = e_category_country.options[e_category_country.selectedIndex].value;
     var e_sub_category_country = document.getElementById("select_sub_category-country");
@@ -198,11 +216,19 @@ function detectFormChangeCountry(evt){
     //depending if a category is selected, give them the option of selecting from a subcategory
     //Similarly for selecting from an indicator  
     if(change_loc == 'select_category-country'){
-        document.getElementById("sub_category-country").style.display = "none";
-        document.getElementById("indicator-country").style.display = "none";
+        document.getElementById("select_sub_category_div-country").style.display = "none";
+        document.getElementById("select_indicator_div-country").style.display = "none";
+        document.getElementById("select_sub_indicator_div-country").style.display = "none";
+        document.getElementById("select_sub_sub_indicator_div-country").style.display = "none";
+
+        document.getElementById("select_sub_category_label-country").style.display = "none";
+        document.getElementById("select_indicator_label-country").style.display = "none";
+        document.getElementById("select_sub_indicator_label-country").style.display = "none";
+        document.getElementById("select_sub_sub_indicator_label-country").style.display = "none";
 
         if(category_country != 'OVERALL GOVERNANCE'){
-        	document.getElementById("sub_category-country").style.display = "block";
+        	document.getElementById("select_sub_category_div-country").style.display = "block";
+       		document.getElementById("select_sub_category_label-country").style.display = "block";
 
             e_sub_category_country.options.length = 0; 
 
@@ -210,22 +236,28 @@ function detectFormChangeCountry(evt){
 
         	var sub_category_options = category_to_sub_category[category_country];
         	for(s_opts in sub_category_options){
-	   			console.log(s_opts);
 
                 e_sub_category_country.options.add(new Option(sub_category_options[s_opts], value = sub_category_options[s_opts]));             
         	}
-        	console.log(e_sub_category_country)
+
         } else {
-            document.getElementById("sub_category-country").style.display = "none";
+            document.getElementById("select_category_div-country").style.display = "none";
+	        document.getElementById("select_sub_category_label-country").style.display = "none";
 
         }
     	e_sub_category_country = undefined;        
     } else if(change_loc == 'select_sub_category-country'){
-    	document.getElementById("indicator").style.display = "none";
+    	document.getElementById("select_indicator_div-country").style.display = "none";
+    	document.getElementById("select_indicator_label-country").style.display = "none";
+    	document.getElementById("select_sub_indicator_div-country").style.display = "none";
+    	document.getElementById("select_sub_indicator_label-country").style.display = "none";
+    	document.getElementById("select_sub_sub_indicator_div-country").style.display = "none";
+    	document.getElementById("select_sub_sub_indicator_label-country").style.display = "none";
 
     	var sub_category_country = e_sub_category_country.options[e_sub_category_country.selectedIndex].value;
     	if(sub_category_country != "Overall"){
-    		document.getElementById("indicator-country").style.display = "block";
+    		document.getElementById("select_indicator_div-country").style.display = "block";
+    		document.getElementById("select_indicator_label-country").style.display = "block";
 
 			// Fill in indicator selector 
         	e_indicator_country.options.length = 0; 
@@ -237,7 +269,9 @@ function detectFormChangeCountry(evt){
         	}
 
     	} else{
-    		document.getElementById("indicator-country").style.display = "none";
+	    	document.getElementById("select_indicator_div-country").style.display = "none";
+	    	document.getElementById("select_indicator_label-country").style.display = "none";
+
         	e_indicator_country.options.length = 0; 
 
     	}
@@ -246,19 +280,23 @@ function detectFormChangeCountry(evt){
         //Fill in these selectors (might need to pass off to a function or something)
 
     } else if(change_loc == 'select_indicator-country'){
-    	//Hold off on going a level lower - so most of this stuff is commented out 
-    	//document.getElementById("indicator").style.display = "none";
-    	sub_category_country = e_sub_category_country.options[e_sub_category_country.selectedIndex].value;
-    	indicator_country = e_indicator_country.options[e_indicator_country.selectedIndex].value;
+    	document.getElementById("select_sub_indicator_div-country").style.display = "none";
+    	document.getElementById("select_sub_indicator_label-country").style.display = "none";
+    	document.getElementById("select_sub_sub_indicator_div-country").style.display = "none";
+    	document.getElementById("select_sub_sub_indicator_label-country").style.display = "none";
 
-    	if(indicator != "Overall"){
-    		document.getElementById("sub_indicator-country").style.display = "block";
+    	var sub_category_country = e_sub_category_country.options[e_sub_category_country.selectedIndex].value;
+    	var indicator_country = e_indicator_country.options[e_indicator_country.selectedIndex].value;
+
+    	if(indicator_country != "Overall"){
+    		document.getElementById("select_sub_indicator_div-country").style.display = "block";
+    		document.getElementById("select_sub_indicator_label-country").style.display = "block";
 
 			// Fill in indicator selector 
         	e_sub_indicator_country.options.length = 0; 
         	e_sub_indicator_country.options.add(new Option('Overall', value='Overall'));    
 
-        	sub_indicator_options = indicator_to_sub_indicator[indicator];
+        	sub_indicator_options = indicator_to_sub_indicator[indicator_country];
 
         	for(si_opts in sub_indicator_options){
                 e_sub_indicator_country.options.add(new Option(sub_indicator_options[si_opts], value = sub_indicator_options[si_opts]));
@@ -269,7 +307,9 @@ function detectFormChangeCountry(evt){
         	//}
 
     	} else{
-    		document.getElementById("sub_indicator-country").style.display = "none";
+    		document.getElementById("select_sub_indicator_div-country").style.display = "none";
+    		document.getElementById("select_sub_indicator_label-country").style.display = "none";
+
         	e_sub_indicator_country.options.length = 0; 
 
     	}
@@ -278,12 +318,41 @@ function detectFormChangeCountry(evt){
         //Fill in these selectors (might need to pass off to a function or something)
 
     } else if(change_loc == 'select_sub_indicator-country'){ 
-    	indicator_country = e_indicator_country.options[e_indicator_country.selectedIndex].value;
-    	sub_indicator_country = e_sub_indicator_country.options[e_sub_indicator_country.selectedIndex].value;
 
-    } else{
+    	document.getElementById("select_sub_sub_indicator_div-country").style.display = "none";
+        document.getElementById("select_sub_sub_indicator_label-country").style.display = "none";
 
-    }
+    	var indicator_country = e_indicator_country.options[e_indicator_country.selectedIndex].value;
+    	var sub_indicator_country = e_sub_indicator_country.options[e_sub_indicator_country.selectedIndex].value;
+
+    	if(sub_indicator_country != "Overall"){
+        	
+        	//Need to add check to make sure that the sub indicator has a sub sub indicator
+        	sub_sub_indicator_options = sub_indicator_to_sub_sub_indicator[sub_indicator];
+
+        	if(!(sub_sub_indicator_options in window)){
+	    		document.getElementById("select_sub_sub_indicator_div-country").style.display = "block";
+		        document.getElementById("select_sub_sub_indicator_label-country").style.display = "block";	    		
+	        	e_sub_sub_indicator_country.options.length = 0; 
+
+	        	e_sub_sub_indicator_country.options.add(new Option('Overall', value='Overall'));    
+
+	        	for(ssi_opts in sub_sub_indicator_options){
+	                e_sub_sub_indicator_country.options.add(new Option(sub_sub_indicator_options[ssi_opts], 
+	                	value = sub_sub_indicator_options[ssi_opts]));
+	        	}
+
+        	}
+
+
+    	} else{
+			document.getElementById("select_sub_sub_indicator_div-country").style.display = "none";
+			document.getElementById("select_sub_sub_indicator_label-country").style.display = "none";    		
+        	e_sub_sub_indicator.options.length = 0; 
+    	}
+
+
+    } 
     update_page2_charts(country);
 }
 
@@ -292,8 +361,7 @@ function detectFormChangeCountry(evt){
 //Initial charts generation 
 
 //Inital update 
-const selectFormCountry = document.forms['select-form-country'];
-selectFormCountry.addEventListener('change', detectFormChangeCountry, false);
+document.getElementById('select-form-country').addEventListener('change', detectFormChangeCountry, false);
 
 country = e_select_country_comparison.options[e_select_country_comparison.selectedIndex].value;
 
