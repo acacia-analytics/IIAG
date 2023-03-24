@@ -45,7 +45,10 @@ var rightNavMenuData = {
 		},
 		{
 			"link": "../index_scores/instability.html", "inner": "AFRICOM Instability Index", "alias": "instability", 
-		}
+		}, 
+		{
+			"link": "../index_scores/iiag.html", "inner": "Ibrahim Index of African Governance", "alias": "iiag", 
+		}		
 	],
 	"maps": [
 		// {

@@ -35,14 +35,12 @@
 <head>
 
 <!-- Stylesheets -->
-	<link rel="stylesheet" href="../../css/w3.css">
-	<link rel="stylesheet" href="../../css/cdo-main.css">
 	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-		integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+		integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">    
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
 	integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
-	crossorigin=""/>
+	crossorigin="">
 	<link rel="stylesheet" href="../../index_scores/iiag/iiag_tab_formatting.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css">
 	<!-- CSS Styling for Hover Boxes -->
@@ -50,6 +48,8 @@
 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="../../css/w3.css">
+	<link rel="stylesheet" href="../../css/cdo-main.css">
 
 	<title> Ibrahim Index of African Governance</title>
 	<style>
@@ -135,16 +135,28 @@
 		  padding-left:10px;
 		}
 
+		.col-md-half {
+    		.make-md-column(0.5);
+		}
+
+
 	</style>
 </head>
 
-<body>
-<nav class="w3-bar w3-center navbar">
+<div class="container-fluid" style='margin-left:0px;margin-right:0px;padding-left:3px;padding-right:3px;'>
+	<div class="row" style='width:100%;margin:0px;padding:0px;'>
+	<nav class="w3-bar w3-center navbar" style='margin:0px;padding:0px;'>	
+		<div class="col-md-half">
+	    <a class="w3-bar-item w3-button w3-left w3-hover-white w3-xlarge" style='margin:0px;' onclick="openNav()">&#9776;</a>
+	 	</div>
+	 	<div class="col-md">
+	    <a class="w3-bar-item w3-button w3-hover-white w3-xlarge" style='margin:0px;'>Africa Command Data and Artificial Intelligence Office</a>
+		</div>
+	</nav>
+	</div>
+</div>
 
-    <a class="w3-bar-item w3-button w3-left w3-hover-white w3-xlarge" onclick="openNav()">&#9776;</a>
-    <!--<a class="w3-bar-item w3-button w3-hover-white w3-xlarge">Africa Command Data and Artificial Intelligence Office</a>-->
-    
-</nav>
+<body>
 
 <div id="main-nav" class="overlay">
 
@@ -175,7 +187,7 @@
 
 
 <div class="tab-content" id="nav-tabPageContent" style="height:100%;">
-  <div class="tab-pane fade active show" id="nav-africa-overview" role="tabpanel" aria-labelledby="nav-africa-overview-tab" style="height:100%;">
+  <div class="tab-pane fade active show" id="nav-africa-overview" role="tabpanel" aria-labelledby="nav-africa-overview-tab" style="height:110%;">
 	<div class="container" style="height:100%;">
 		<div id = "select-form" class = "form-inline" role = "form">
 			<div class="row">
@@ -225,11 +237,11 @@
 		  </div>
 	  </div>
 		<hr>
-		<div class="row" id="content" style="height:100%;">		
+		<div class="row" id="content" style="height:90%;">		
 		    <div class="col-md w3-half w3-padding" style="height:90%;">
 				<div id="index-map" class="index-map" style="height:95%;"></div> 
 			</div>
-		    <div class="col-md" style="height:100%;">
+		    <div class="col-md" style="height:90%;">
 				<div class="row" id="btn-content" style="height:5%;">		
 					<div class="btn-toolbar pull-right" id="category_button">
 				  		<button class="btn btn-light region-btn active" id = "region-ac-btn">
@@ -445,17 +457,6 @@
 		</div>
 
 	</div>  
-	<!--
-	Absence of Non-State Conflict (ACLED/UCDP)
-	Absence of Non-State Armed Conflict (UCDP)
-	Absence of Violent Events in Non-State Conflict (ACLED)
-	Absence of Violence against Civilians (ACLED/PTS)
-	Absence of Human Rights Abuses by the Government (ACLED/PTS)
-	Absence of Government Violence against Civilians (ACLED)
-	Absence of Political Violence (PTS)
-	Absence of Non-State Actor Violence against Civilians (ACLED)
-	Absence of Forced Migration (IDMC/UNHCR)-->
-
 </div>
 
 <script>
@@ -511,13 +512,14 @@
 <footer class="w3-padding-32 cdo-footer-background w3-text-white">
     <div class="cdo-inner-container w3-cell-row">
         <div class="w3-cell">
-            <!--<p>United States Africa Command</p>
+            <p>United States Africa Command</p>
             <p>Command Data and AI Office</p>
             <p>Kelly Barracks, Stuttgart, DE</p>
-            <p>DSN: 324-591-0032</p>-->
+            <p>DSN: 324-591-0032</p>
         </div>
     </div>
 </footer>
+
 </div>
 <script src="../../navigation/rightNavMenuData.js"></script>
 <script src="../../navigation/leftNavMenuData.js"></script>
@@ -1049,7 +1051,7 @@ $('#category_button button').click(function() {
 <script src="../../index_scores/iiag/iiag_country_page.js"></script>
 
 </body>
-
+</html>
 
 
 
