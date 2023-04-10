@@ -201,7 +201,20 @@ write_csv(levels_mapping_cleaned, file = "./../../../AFRICOM/IIAG/iiag_mapping.c
 
 load("./../../../AFRICOM/IIAG/clean_iiag_data.RData")
 
-write_json(iiag_data, path = "./../index_scores/iiag/iiag.js")
+# Write to JSON - remove extraneous columns to keep size down
+iiag_data %>% 
+  group_by() %>% 
+  select(
+    -Index_Code, 
+    -Index_Source,
+    -Index_Code_Category, 
+    -Index_Code_Sub_Category,
+    -Index_Code_Sub_Indicator,
+    -Index_Code_Sub_Sub_Indicator,
+    -SubSaharan
+  ) %>% 
+write_json(path = "./../index_scores/iiag/iiag.js")
+
 
 fConn <- file( "./../index_scores/iiag/iiag.js", 'r+')
 Lines <- readLines(fConn)
